@@ -16,13 +16,14 @@ import org.citra.citra_emu.features.settings.model.Settings
 import org.citra.citra_emu.features.settings.model.view.InputBindingSetting
 import org.citra.citra_emu.utils.EmulationLifecycleUtil
 import org.citra.citra_emu.utils.TurboHelper
+import org.citra.citra_emu.vr.utils.VRUtils
 
 class HotkeyUtility(
     private val screenAdjustmentUtil: ScreenAdjustmentUtil,
     private val context: Context
 ) {
 
-    private val hotkeyButtons = org.citra.citra_emu.vr.utils.VRUtils.Hotkey.entries.map { it.button }
+    private val hotkeyButtons = VRUtils.Hotkey.entries.map { it.button }
     private var hotkeyIsEnabled = false
     var hotkeyIsPressed = false
     private val currentlyPressedButtons = mutableSetOf<Int>()

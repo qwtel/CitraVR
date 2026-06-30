@@ -4,10 +4,10 @@
 
 package org.citra.citra_emu.applets
 
-import android.R
 import androidx.annotation.Keep
 import java.io.Serializable
 import org.citra.citra_emu.NativeLibrary
+import org.citra.citra_emu.R
 import org.citra.citra_emu.fragments.MiiSelectorDialogFragment
 import org.citra.citra_emu.vr.VrActivity
 
@@ -22,16 +22,22 @@ object MiiSelector {
         val fragment = MiiSelectorDialogFragment.newInstance(config)
         fragment.show(emulationActivity!!.supportFragmentManager, "mii_selector")
     }
+
     private fun vrExecuteImpl(config: MiiSelectorConfig) {
         data = MiiSelectorData(0, 0)
         val list = ArrayList<String>()
-        list.add(NativeLibrary.sEmulationActivity.get()!!.getString(org.citra.citra_emu.R.string.standard_mii))
+        list.add(NativeLibrary.sEmulationActivity.get()!!.getString(R.string.standard_mii))
         list.addAll(listOf<String>(*config.miiNames))
         val initialIndex =
-            if (config.initiallySelectedMiiIndex < list.size) config.initiallySelectedMiiIndex as Int else 0
+            if (config.initiallySelectedMiiIndex < list.size) {
+                config.initiallySelectedMiiIndex.toInt()
+            } else {
+                0
+            }
         data.index = initialIndex
         data.returnCode = 0
     }
+
     @JvmStatic
     fun execute(config: MiiSelectorConfig): MiiSelectorData {
         if (NativeLibrary.sEmulationActivity.get() is VrActivity) {

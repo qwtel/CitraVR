@@ -177,15 +177,16 @@ object SettingsFile {
         }
 
     fun getSettingsFile(fileName: String): DocumentFile {
-       return getSettingsFile(fileName, "ini.vr")
+        return getSettingsFile(fileName, "ini.vr")
     }
+
     fun getSettingsFile(fileName: String, ext: String): DocumentFile {
         val root = DocumentFile.fromTreeUri(CitraApplication.appContext, Uri.parse(userDirectory))
         val configDirectory = root?.findFile("config")
 
         // Check if the config directory exists; if not, create it.
         val actualConfigDirectory = configDirectory ?: root?.createDirectory("config")
-        ?: throw IllegalStateException("Cannot create config directory")
+            ?: throw IllegalStateException("Cannot create config directory")
 
         // Try to find the file, if it doesn't exist, create it.
         return actualConfigDirectory.findFile("$fileName.$ext")

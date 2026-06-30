@@ -16,7 +16,6 @@ import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import android.view.WindowManager
 import android.view.animation.PathInterpolator
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -76,7 +75,6 @@ import org.citra.citra_emu.viewmodel.GamesViewModel
 import org.citra.citra_emu.viewmodel.HomeViewModel
 import org.citra.citra_emu.vr.VrActivity
 import org.citra.citra_emu.vr.ui.VrNoticePagerAdapter
-import org.citra.citra_emu.vr.utils.VrMainActivityUtils
 
 class MainActivity :
     AppCompatActivity(),
@@ -114,8 +112,6 @@ class MainActivity :
         ThemeUtil.themeChangeListener(this)
         ThemeUtil.setTheme(this)
         super.onCreate(savedInstanceState)
-
-        VrMainActivityUtils.doVersionUpdates(applicationContext)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -208,11 +204,9 @@ class MainActivity :
 
         setInsets()
 
-        // Check for the TWO_INSTANCES string extra
-        if (getIntent().getBooleanExtra(VrActivity.EXTRA_ERROR_TWO_INSTANCES, false)) {
-            Log.error("Error: two instances of CitraVr::VrActivity were running at the same time!");
-            // Show an alert dialog explaining the situation
-             MaterialAlertDialogBuilder(this)
+        if (intent.getBooleanExtra(VrActivity.EXTRA_ERROR_TWO_INSTANCES, false)) {
+            Log.error("Error: two instances of VrActivity were running at the same time")
+            MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.vr_error_two_instances_title)
                 .setMessage(R.string.vr_error_two_instances_message)
                 .setIcon(R.mipmap.ic_launcher)
@@ -314,12 +308,12 @@ class MainActivity :
         viewPager.adapter = pagerAdapter
         val btnNext = dialogView.findViewById<ImageButton>(R.id.button_next)
         val btnClose = dialogView.findViewById<MaterialButton>(R.id.button_close)
-        dialogView.findViewById<TextView>(R.id.notice_title).text = resources.getString(R.string.vr_notice_title)
+        dialogView.findViewById<TextView>(R.id.notice_title).text =
+            resources.getString(R.string.vr_notice_title)
         btnNext.setOnClickListener {
             val currentItem = viewPager.currentItem
             if (currentItem < pagerAdapter.itemCount - 1) {
                 viewPager.setCurrentItem(currentItem + 1, true)
-            } else {
             }
         }
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -338,7 +332,7 @@ class MainActivity :
         })
         builder.setView(dialogView)
         val dialog = builder.create()
-        btnClose.setOnClickListener { _ -> dialog.dismiss()}
+        btnClose.setOnClickListener { dialog.dismiss() }
         dialog.show()
     }
 

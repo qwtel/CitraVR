@@ -264,30 +264,18 @@ fun getGitVersion(): String {
     var versionName = "0.0"
 
     try {
-        // First, try to get the most recent tag associated with the current commit
-        versionName = ProcessBuilder("git", "describe", "--tags", "--abbrev=0")
+        versionName = ProcessBuilder("git", "describe", "--always", "--long")
             .directory(project.rootDir)
             .redirectOutput(ProcessBuilder.Redirect.PIPE)
             .redirectError(ProcessBuilder.Redirect.PIPE)
             .start().inputStream.bufferedReader().use { it.readText() }
             .trim()
-
-        // If no tags are found, use commit hash
-        if (versionName.isEmpty()) {
-            versionName = ProcessBuilder("git", "describe", "--always", "--long")
-                .directory(project.rootDir)
-                .redirectOutput(ProcessBuilder.Redirect.PIPE)
-                .redirectError(ProcessBuilder.Redirect.PIPE)
-                .start().inputStream.bufferedReader().use { it.readText() }
-                .trim()
-                .replace(Regex("(-0)?-[^-]+$"), "")
-        }
+            .replace(Regex("(-0)?-[^-]+$"), "")
     } catch (e: Exception) {
         logger.error("Cannot find git, defaulting to dummy version number")
     }
     return versionName
 }
-
 
 fun getGitHash(): String =
     runGitCommand(ProcessBuilder("git", "rev-parse", "--short", "HEAD")) ?: "dummy-hash"

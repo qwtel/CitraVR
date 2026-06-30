@@ -17,8 +17,8 @@
             android:id="@+id/toolbar_about"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_back"
-            app:title="@string/about" />
+            app:title="@string/about"
+            app:navigationIcon="@drawable/ic_back" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -26,8 +26,8 @@
         android:id="@+id/scroll_about"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fadeScrollbars="false"
         android:scrollbars="vertical"
+        android:fadeScrollbars="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -45,21 +45,118 @@
                 android:layout_marginTop="28dp" />
 
             <LinearLayout
-                android:id="@+id/button_build_hash"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:orientation="vertical"
+                android:paddingVertical="16dp"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp">
+                android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/TextAppearance.Material3.TitleMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
-                    android:text="@string/build"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:text="@string/about" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="6dp"
+                    android:textAlignment="viewStart"
+                    android:text="@string/citra_description" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp" />
+
+            <LinearLayout
+                android:id="@+id/button_contributors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:textAlignment="viewStart"
+                    android:text="@string/contributors" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="6dp"
+                    android:textAlignment="viewStart"
+                    android:text="@string/contributors_description" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp" />
+
+            <LinearLayout
+                android:id="@+id/button_licenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:textAlignment="viewStart"
+                    android:text="@string/licenses" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="6dp"
+                    android:textAlignment="viewStart"
+                    android:text="@string/licenses_description" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp" />
+
+            <LinearLayout
+                android:id="@+id/button_build_hash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:textAlignment="viewStart"
+                    android:text="@string/build" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_build_hash"
@@ -79,92 +176,35 @@
                 android:layout_marginHorizontal="20dp" />
 
             <LinearLayout
-                android:id="@+id/button_release_notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:orientation="vertical"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp">
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextAppearance.Material3.TitleMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="24dp"
-                    android:text="@string/release_notes_title"
-                    android:textAlignment="viewStart" />
-
-            </LinearLayout>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp" />
-
-            <LinearLayout
-                android:id="@+id/button_licenses"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:orientation="vertical"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp">
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextAppearance.Material3.TitleMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="24dp"
-                    android:text="@string/licenses"
-                    android:textAlignment="viewStart" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextAppearance.Material3.BodyMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="6dp"
-                    android:text="@string/vr_licenses_description"
-                    android:textAlignment="viewStart" />
-
-            </LinearLayout>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="16dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:layout_marginHorizontal="40dp">
 
                 <Button
-                    android:id="@+id/button_discord"
                     style="?attr/materialIconButtonStyle"
+                    android:id="@+id/button_discord"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:icon="@drawable/ic_discord"
-                    app:iconGravity="textEnd"
+                    app:iconTint="?attr/colorOnSurface"
                     app:iconSize="24dp"
-                    app:iconTint="?attr/colorOnSurface" />
+                    app:iconGravity="textEnd" />
 
                 <Button
-                    android:id="@+id/button_website"
                     style="?attr/materialIconButtonStyle"
+                    android:id="@+id/button_website"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:icon="@drawable/ic_controller"
-                    app:iconGravity="textEnd"
+                    app:icon="@drawable/ic_website"
+                    app:iconTint="?attr/colorOnSurface"
                     app:iconSize="24dp"
-                    app:iconTint="?attr/colorOnSurface" />
+                    app:iconGravity="textEnd" />
 
                 <Button
                     android:id="@+id/button_github"
@@ -173,9 +213,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:icon="@drawable/ic_github"
-                    app:iconGravity="textEnd"
+                    app:iconTint="?attr/colorOnSurface"
                     app:iconSize="24dp"
-                    app:iconTint="?attr/colorOnSurface" />
+                    app:iconGravity="textEnd" />
 
             </LinearLayout>
 

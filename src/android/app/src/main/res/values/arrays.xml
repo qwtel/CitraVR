@@ -168,6 +168,8 @@
         <item>@string/controller_circlepad</item>
         <item>@string/controller_c</item>
         <item>@string/button_home</item>
+        <item>@string/button_swap</item>
+        <item>@string/button_turbo</item>
     </string-array>
     <string-array name="cameraImageSourceNames">
         <item>@string/blank</item>
@@ -305,7 +307,7 @@
         <item>@string/theme_mode_dark</item>
     </string-array>
     <integer-array name="themeModeValues">
-        <item>0</item>
+        <item>-1</item>
         <item>1</item>
         <item>2</item>
     </integer-array>

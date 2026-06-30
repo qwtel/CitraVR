@@ -133,6 +133,16 @@ class HomeSettingsFragment : Fragment() {
                 { mainActivity.ciaFileInstaller.launch(true) }
             ),
             HomeSetting(
+                R.string.setup_system_files,
+                R.string.setup_system_files_description,
+                R.drawable.ic_system_update,
+                {
+                    exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+                    parentFragmentManager.primaryNavigationFragment?.findNavController()
+                        ?.navigate(R.id.action_homeSettingsFragment_to_systemFilesFragment)
+                }
+            ),
+            HomeSetting(
                 R.string.share_log,
                 R.string.share_log_description,
                 R.drawable.ic_share,
@@ -164,6 +174,12 @@ class HomeSettingsFragment : Fragment() {
                 R.drawable.ic_add,
                 { getGamesDirectory.launch(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).data) },
                 details = homeViewModel.gamesDir
+            ),
+            HomeSetting(
+                R.string.preferences_theme,
+                R.string.theme_and_color_description,
+                R.drawable.ic_palette,
+                { SettingsActivity.launch(requireContext(), Settings.SECTION_THEME, "") }
             ),
             HomeSetting(
                 R.string.about,

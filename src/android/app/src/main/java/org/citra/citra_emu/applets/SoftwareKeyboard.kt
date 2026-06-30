@@ -12,6 +12,7 @@ import org.citra.citra_emu.CitraApplication.Companion.appContext
 import org.citra.citra_emu.NativeLibrary
 import org.citra.citra_emu.R
 import org.citra.citra_emu.fragments.KeyboardDialogFragment
+import org.citra.citra_emu.fragments.MessageDialogFragment
 import org.citra.citra_emu.utils.Log
 import org.citra.citra_emu.vr.VrActivity
 import org.citra.citra_emu.vr.ui.VrKeyboardView
@@ -49,10 +50,14 @@ object SoftwareKeyboard {
             else -> emulationActivity.getString(R.string.invalid_input)
         }
 
-      /*  MessageDialogFragment.newInstance(R.string.software_keyboard, message).show(
-            NativeLibrary.sEmulationActivity.get()!!.supportFragmentManager,
+        if (emulationActivity is VrActivity) {
+            return
+        }
+
+        MessageDialogFragment.newInstance(R.string.software_keyboard, message).show(
+            emulationActivity.supportFragmentManager,
             MessageDialogFragment.TAG
-        )*/
+        )
     }
 
     @JvmStatic
@@ -72,9 +77,7 @@ object SoftwareKeyboard {
         } else {
             Log.debug("Starting keyboard: non-VR")
             NativeLibrary.sEmulationActivity.get()!!.runOnUiThread {
-                executeImpl(
-                    config
-                )
+                executeImpl(config)
             }
         }
         synchronized(finishLock) {
@@ -175,8 +178,13 @@ object SoftwareKeyboard {
         }
     }
     fun onFinishVrKeyboardPositive(text: String?, config: KeyboardConfig?) {
-        Log.debug("[SoftwareKeyboard] button positive: \"$text\" config button: ${config!!.buttonConfig}")
-        data = KeyboardData(config!!.buttonConfig, text!!)
+        if (config == null) {
+            onFinishVrKeyboardNegative()
+            return
+        }
+        val keyboardText = text ?: ""
+        Log.debug("[SoftwareKeyboard] button positive: \"$keyboardText\" config button: ${config.buttonConfig}")
+        data = KeyboardData(config.buttonConfig, keyboardText)
         val error = ValidateInput(data.text)
         if (error != ValidationError.None) {
             handleValidationError(config, error)

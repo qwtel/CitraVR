@@ -17,7 +17,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.citra.citra_emu.CitraApplication
 import org.citra.citra_emu.R
 import org.citra.citra_emu.display.ScreenLayout
-import org.citra.citra_emu.display.StereoMode
 import org.citra.citra_emu.display.StereoWhichDisplay
 import org.citra.citra_emu.features.settings.model.AbstractBooleanSetting
 import org.citra.citra_emu.features.settings.model.AbstractIntSetting
@@ -1017,31 +1016,7 @@ class SettingsFragmentPresenter(private val fragmentView: SettingsFragmentView) 
             )
 
             add(HeaderSetting(R.string.stereoscopy))
-            // AzaharXR-specific: always want this on
-          /*  add(
-                SingleChoiceSetting(
-                    IntSetting.RENDER_3D_WHICH_DISPLAY,
-                    R.string.render_3d_which_display,
-                    R.string.render_3d_which_display_description,
-                    R.array.render3dWhichDisplay,
-                    R.array.render3dDisplayValues,
-                    IntSetting.RENDER_3D_WHICH_DISPLAY.key,
-                    IntSetting.RENDER_3D_WHICH_DISPLAY.defaultValue
-                )
-            )
-            add(
-                SingleChoiceSetting(
-                    IntSetting.STEREOSCOPIC_3D_MODE,
-                    R.string.render3d,
-                    R.string.render3d_description,
-                    R.array.render3dModes,
-                    R.array.render3dValues,
-                    IntSetting.STEREOSCOPIC_3D_MODE.key,
-                    IntSetting.STEREOSCOPIC_3D_MODE.defaultValue,
-                    isEnabled =
-                        IntSetting.RENDER_3D_WHICH_DISPLAY.int != StereoWhichDisplay.NONE.int
-                )
-            )*/
+            // AzaharXR owns 3D display selection and stereo mode from the VR renderer.
             add(
                 SliderSetting(
                     IntSetting.STEREOSCOPIC_3D_DEPTH,
@@ -1075,51 +1050,7 @@ class SettingsFragmentPresenter(private val fragmentView: SettingsFragmentView) 
                         IntSetting.RENDER_3D_WHICH_DISPLAY.int != StereoWhichDisplay.NONE.int
                 )
             )
-
-            // AzaharXR-specific: don't show cardboard settings, we won't use them.
-            /*
-            add(HeaderSetting(R.string.cardboard_vr))
-            add(
-                SliderSetting(
-                    IntSetting.CARDBOARD_SCREEN_SIZE,
-                    R.string.cardboard_screen_size,
-                    R.string.cardboard_screen_size_description,
-                    30,
-                    100,
-                    "%",
-                    IntSetting.CARDBOARD_SCREEN_SIZE.key,
-                    IntSetting.CARDBOARD_SCREEN_SIZE.defaultValue.toFloat(),
-                    isEnabled = IntSetting.STEREOSCOPIC_3D_MODE.int == StereoMode.CARDBOARD_VR.int
-                )
-            )
-            add(
-                SliderSetting(
-                    IntSetting.CARDBOARD_X_SHIFT,
-                    R.string.cardboard_x_shift,
-                    R.string.cardboard_x_shift_description,
-                    -100,
-                    100,
-                    "%",
-                    IntSetting.CARDBOARD_X_SHIFT.key,
-                    IntSetting.CARDBOARD_X_SHIFT.defaultValue.toFloat(),
-                    isEnabled = IntSetting.STEREOSCOPIC_3D_MODE.int == StereoMode.CARDBOARD_VR.int
-                )
-            )
-            add(
-                SliderSetting(
-                    IntSetting.CARDBOARD_Y_SHIFT,
-                    R.string.cardboard_y_shift,
-                    R.string.cardboard_y_shift_description,
-                    -100,
-                    100,
-                    "%",
-                    IntSetting.CARDBOARD_Y_SHIFT.key,
-                    IntSetting.CARDBOARD_Y_SHIFT.defaultValue.toFloat(),
-                    isEnabled = IntSetting.STEREOSCOPIC_3D_MODE.int == StereoMode.CARDBOARD_VR.int
-                )
-            )
-            */
-
+            // AzaharXR uses OpenXR presentation, so upstream Cardboard controls do not apply.
 
             add(HeaderSetting(R.string.utility))
             add(

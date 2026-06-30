@@ -78,10 +78,7 @@
 
         <activity
             android:name="org.citra.citra_emu.ui.main.MainActivity"
-            android:configChanges="density|orientation|screenSize|keyboard|keyboardHidden|uiMode"
             android:exported="true"
-            android:resizeableActivity="false"
-            android:screenOrientation="landscape"
             android:theme="@style/Theme.Citra.Splash.Main">
 
             <!-- This intentfilter marks this Activity as the one that gets launched from Home screen. -->
@@ -100,7 +97,6 @@
             android:configChanges="orientation|screenSize|uiMode"
             android:exported="true"
             android:label="@string/preferences_settings"
-            android:screenOrientation="landscape"
             android:theme="@style/Theme.Citra.Main">
             <intent-filter>
                 <category android:name="com.oculus.intent.category.2D" />
