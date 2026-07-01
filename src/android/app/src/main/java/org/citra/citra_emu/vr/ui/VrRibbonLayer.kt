@@ -35,7 +35,7 @@ class VrRibbonLayer(activity: VrActivity) : VrUILayer(activity, R.layout.vr_ribb
 
     override fun onSurfaceCreated() {
       super.onSurfaceCreated()
-      applyRibbonButtonTheme()
+      applyRibbonTheme()
       initializeLeftMenu()
       initializeMainPanel()
       initializePositionalPanel()
@@ -88,17 +88,31 @@ class VrRibbonLayer(activity: VrActivity) : VrUILayer(activity, R.layout.vr_ribb
     radioGroup?.check(R.id.button_menu_main)
   }
 
-  private fun applyRibbonButtonTheme() {
-    val colors = RibbonButtonColors(
-      defaultFill = getThemeColor(com.google.android.material.R.attr.colorSurfaceVariant),
-      defaultText = getThemeColor(com.google.android.material.R.attr.colorOnSurfaceVariant),
-      selectedFill = getThemeColor(com.google.android.material.R.attr.colorPrimaryContainer),
-      selectedText = getThemeColor(com.google.android.material.R.attr.colorOnPrimaryContainer)
+  private fun applyRibbonTheme() {
+    val colors = RibbonColors(
+      surface = getThemeColor(com.google.android.material.R.attr.colorSurface),
+      onSurface = getThemeColor(com.google.android.material.R.attr.colorOnSurface),
+      surfaceVariant = getThemeColor(com.google.android.material.R.attr.colorSurfaceVariant),
+      onSurfaceVariant = getThemeColor(com.google.android.material.R.attr.colorOnSurfaceVariant),
+      primaryContainer = getThemeColor(com.google.android.material.R.attr.colorPrimaryContainer),
+      onPrimaryContainer = getThemeColor(com.google.android.material.R.attr.colorOnPrimaryContainer)
     )
-    applyRibbonButtonTheme(window?.decorView, colors)
+    applyRibbonTheme(window?.decorView, colors)
   }
 
-  private fun applyRibbonButtonTheme(view: View?, colors: RibbonButtonColors) {
+  private fun applyRibbonTheme(view: View?, colors: RibbonColors) {
+    when (view?.id) {
+      R.id.frame -> {
+        view.backgroundTintList = null
+        view.background = createRoundedBackground(colors.surface, 20)
+      }
+
+      R.id.lowerPanelPlaceHolder -> view.setBackgroundColor(colors.surfaceVariant)
+
+      R.id.divider1, R.id.divider2, R.id.divider3 ->
+        view.setBackgroundColor(colors.surfaceVariant)
+    }
+
     if (view is Button || view is RadioButton || view is ToggleButton) {
       (view as TextView).apply {
         background = createRibbonButtonSelector(colors)
@@ -109,15 +123,23 @@ class VrRibbonLayer(activity: VrActivity) : VrUILayer(activity, R.layout.vr_ribb
               intArrayOf(android.R.attr.state_pressed),
               intArrayOf()
             ),
-            intArrayOf(colors.selectedText, colors.selectedText, colors.defaultText)
+            intArrayOf(
+              colors.onPrimaryContainer,
+              colors.onPrimaryContainer,
+              colors.onSurfaceVariant
+            )
           )
         )
       }
+    } else if (view is TextView) {
+      val textColor = getRibbonTextColor(view, colors)
+      view.setTextColor(textColor)
+      view.compoundDrawableTintList = ColorStateList.valueOf(textColor)
     }
 
     if (view is ViewGroup) {
       for (i in 0 until view.childCount) {
-        applyRibbonButtonTheme(view.getChildAt(i), colors)
+        applyRibbonTheme(view.getChildAt(i), colors)
       }
     }
   }
@@ -125,37 +147,66 @@ class VrRibbonLayer(activity: VrActivity) : VrUILayer(activity, R.layout.vr_ribb
   private fun getThemeColor(attr: Int): Int =
     MaterialColors.getColor(activity.window.decorView, attr)
 
-  private fun createRibbonButtonSelector(colors: RibbonButtonColors): StateListDrawable =
+  private fun createRibbonButtonSelector(colors: RibbonColors): StateListDrawable =
     StateListDrawable().apply {
       addState(
         intArrayOf(android.R.attr.state_checked),
-        createRibbonButtonBackground(colors.selectedFill)
+        createRoundedBackground(colors.primaryContainer, 8)
       )
       addState(
         intArrayOf(android.R.attr.state_pressed),
-        createRibbonButtonBackground(colors.selectedFill)
+        createRoundedBackground(colors.primaryContainer, 8)
       )
       addState(
         intArrayOf(),
-        createRibbonButtonBackground(colors.defaultFill)
+        createRoundedBackground(colors.surfaceVariant, 8)
       )
     }
 
-  private fun createRibbonButtonBackground(fillColor: Int): GradientDrawable =
+  private fun createRoundedBackground(fillColor: Int, radiusDp: Int): GradientDrawable =
     GradientDrawable().apply {
       shape = GradientDrawable.RECTANGLE
       setColor(fillColor)
-      cornerRadius = dp(8).toFloat()
+      cornerRadius = dp(radiusDp).toFloat()
     }
+
+  private fun getRibbonTextColor(view: TextView, colors: RibbonColors): Int {
+    if (!isInStatsPanel(view)) {
+      return colors.onSurface
+    }
+
+    return when (view.id) {
+      R.id.label_game,
+      R.id.label_cpu_usage,
+      R.id.label_gpu_usage,
+      R.id.label_vr_app,
+      R.id.label_vr_compositor,
+      R.id.label_app_version -> colors.onSurface
+      else -> colors.onSurfaceVariant
+    }
+  }
+
+  private fun isInStatsPanel(view: View): Boolean {
+    var current = view.parent
+    while (current is View) {
+      if (current.id == R.id.stats_panel) {
+        return true
+      }
+      current = current.parent
+    }
+    return false
+  }
 
   private fun dp(value: Int): Int =
     (value * activity.resources.displayMetrics.density + 0.5f).toInt()
 
-  private data class RibbonButtonColors(
-    val defaultFill: Int,
-    val defaultText: Int,
-    val selectedFill: Int,
-    val selectedText: Int
+  private data class RibbonColors(
+    val surface: Int,
+    val onSurface: Int,
+    val surfaceVariant: Int,
+    val onSurfaceVariant: Int,
+    val primaryContainer: Int,
+    val onPrimaryContainer: Int
   )
 
   private fun initializePositionalPanel() {

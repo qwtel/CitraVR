@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://azahar-emu.org/"><img src="assets/citravr_logo.png" alt="AzaharXR" width="500"></a> (Beta)
+  <a href="https://azahar-emu.org/"><img src="assets/azaharxr_logo.png" alt="AzaharXR" width="500"></a> (Beta)
 </h1>
 
 <h4 align="center"> Play 3DS homebrew and personal game backups in 3D on the go with your Quest.
@@ -9,7 +9,7 @@
 </h4>
 
 <p align="center">
-  <a href="#compatabillty">Compatibillty</a> |
+  <a href="#compatibility">Compatibility</a> |
   <a href="#releases">Releases</a> |
   <a href="#known-issues">Known Issues</a> |
   <a href="#how-to-install-and-run">How to Install and Run</a> |
@@ -39,7 +39,7 @@ The project is still small, but I'm looking for ways to improve it as time goes 
 - Low-overhead port
 - Fully GPL-licensed, 100% independent of the Meta SDK
 
-## Compatibillty
+## Compatibility
 
 ### HMDs
 AzaharXR supports the following devices:
