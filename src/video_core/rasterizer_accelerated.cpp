@@ -3,8 +3,8 @@
 // Refer to the license.txt file included.
 
 #include "common/alignment.h"
-#include "common/settings.h"
 #include "common/math_util.h"
+#include "common/settings.h"
 #include "core/memory.h"
 #include "video_core/pica/pica_core.h"
 #include "video_core/rasterizer_accelerated.h"
@@ -27,7 +27,7 @@ static Common::Vec3f LightColor(const Pica::LightingRegs::LightColor& color) {
     return Common::Vec3u{color.r, color.g, color.b} / 255.0f;
 }
 
-constexpr float VR_IPD  = 0.065f;
+constexpr float VR_IPD = 0.065f;
 
 RasterizerAccelerated::HardwareVertex::HardwareVertex(const Pica::OutputVertex& v,
                                                       bool flip_quaternion) {
@@ -269,44 +269,40 @@ void RasterizerAccelerated::SyncDrawUniforms() {
     pica.dirty_regs.Reset();
 }
 
-void RasterizerAccelerated::SetVRData(const int32_t &vrImmersiveMode, const float& immersiveModeFactor, int uoffset, const float& gamePosScaler, const float inv_view[16])
-{
-    if (vs_data.vr_immersive_mode_factor != immersiveModeFactor)
-    {
-        vs_data.vr_immersive_mode_factor = immersiveModeFactor;
+void RasterizerAccelerated::SetVRData(const int32_t& vr_immersive_mode_value,
+                                      const float& immersive_mode_factor, int uoffset,
+                                      const float& game_pos_scaler, const float inv_view[16]) {
+    if (vs_data.vr_immersive_mode_factor != immersive_mode_factor) {
+        vs_data.vr_immersive_mode_factor = immersive_mode_factor;
         vs_data_dirty = true;
     }
 
     vr_uoffset = uoffset;
-    vr_immersive_mode = vrImmersiveMode;
-    vr_game_pos_scaler = gamePosScaler;
+    vr_immersive_mode = vr_immersive_mode_value;
+    vr_game_pos_scaler = game_pos_scaler;
     std::memcpy(vr_inv_view, inv_view, sizeof(float) * 16);
 }
 
 static void MatrixTranspose(float m[16], const float src[16]) {
-    for (int i = 0; i < 4; ++i)
-    {
-        for (int j = 0; j < 4; ++j)
-        {
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
             m[i * 4 + j] = src[j * 4 + i];
         }
     }
 }
 
 static void MatrixMultiply(float m[16], const float a[16], const float b[16]) {
-    for (int i = 0; i < 4; ++i)
-    {
-        for (int j = 0; j < 4; ++j)
-        {
-            m[i * 4 + j] = a[j] * b[i*4] + a[j+4] * b[i*4+1] + a[j+8] * b[i*4+2] + a[j+12] * b[i*4+3];
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            m[i * 4 + j] = a[j] * b[i * 4] + a[j + 4] * b[i * 4 + 1] +
+                           a[j + 8] * b[i * 4 + 2] + a[j + 12] * b[i * 4 + 3];
         }
     }
 }
 
-void RasterizerAccelerated::ApplyVRDataToPicaVSUniforms(Pica::Shader::Generator::VSPicaUniformData &vs_uniforms)
-{
-    if (vr_immersive_mode)
-    {
+void RasterizerAccelerated::ApplyVRDataToPicaVSUniforms(
+    Pica::Shader::Generator::VSPicaUniformData& vs_uniforms) {
+    if (vr_immersive_mode) {
         auto &f = vs_uniforms.f;
 
         int viewMatrixIndex = -1;

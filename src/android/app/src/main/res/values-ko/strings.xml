@@ -1,4 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    </resources>
+    <!-- AzaharXR -->
+    <string name="preferences_vr">VR</string>
+    <string name="vr_background">VR Environment</string>
+    <string name="vr_error_two_instances_title">Error: Detected Two AzaharXR Instances</string>
+    <string name="vr_error_two_instances_message">Detected a fatal launch bug with AzaharXR.  This is a known issue. \n\nThe problem is now resolved.   Please try launching the game again. </string>
+    <string name="vr_extra_performance_mode">VR Extra Performance Mode</string>
+    <string name="vr_cpu_level">CPU level</string>
+    <string name="vr_cpu_level_description">Higher levels may improve audio/emulation performance, but will drain the battery faster</string>
+    <string name="vr_dpad_thumbrest_mode">Thumbrest D-Pad Mode</string>
+    <string name="vr_dpad_thumbrest_mode_description">Choose which thumbrest can turn a thumbstick into the D-Pad.</string>
+    <string name="vr_dpad_thumbrest_mode_both">Either thumbrest, opposite stick</string>
+    <string name="vr_dpad_thumbrest_mode_left_to_right">Left thumbrest, right stick only</string>
+    <string name="vr_motion_source">Motion Controls Source</string>
+    <string name="vr_motion_source_description">Use a tracked VR device as the 3DS motion sensor.</string>
+    <string name="vr_motion_source_off">Off</string>
+    <string name="vr_motion_source_hmd">HMD</string>
+    <string name="vr_motion_source_left_controller">Left controller</string>
+    <string name="vr_motion_source_right_controller">Right controller</string>
+    <string name="vr_motion_source_combined">Combined</string>
+    <string name="vr_immersive_mode_title">[WARNING: Graphics Artifacts] Immersive Mode (Experimental)</string>
+    <string name="vr_immersive_mode_description">Extends the top screen around a cylinder for immersive gameplay</string>
+    <string name="vr_new_3ds_description">Should be enabled for most titles.  When disabled, improves performance of specific titles (e.g. Star Fox 64 3D)</string>
+    <string name="release_notes_title">Release Notes</string>
+    <string name="vr_licenses_description">Projects that make Azahar and AzaharXR possible</string>
+    <string name="game_compat_tooltip">Game Compatibility Sheet</string>
+    <string name="vr_extra_performance_mode_description">Overrides the value of other settings to minimize overhead and maximize performance.  NOTE: when this setting is enabled, the user\'s values for the following settings are ignored: VR Environment (always selects Void), Audio stretching (disabled)</string>
+    <string name="vr_display_refresh_rate">Display Refresh Rate</string>
+    <string name="vr_display_refresh_rate_description">120 Hz mode might help with frame pacing when playing 60 Hz games.</string>
+    <string name="vr_display_refresh_rate_default">System default</string>
+    <string name="vr_display_refresh_rate_120">120 Hz</string>
+    <string name="vr_notice_title">Welcome to AzaharXR!</string>
+    <string name="vr_notice_description">During your first playthrough of a game or level, you might experience brief pauses or audio stutters. \n\nAfter the shaders are loaded, they are stored to the device, preventing these stutters on subsequent launches. </string>
+    <string name="vr_notice_description2">Some games just won\'t run well. Be sure to check the AzaharXR Game Compatibility List to see which games perform best.</string>
+    <string name="vr_input_binding_subtitle">\nHaving trouble? Press Select + Start to disable Gamepad Gaze Mode, then try again</string>
+    <string name="immersive_mode">Immersive Mode</string>
+    <string name="vr_si_mode_register_offset_title">Register Offset [Optional]</string>
+    <string name="vr_si_mode_register_offset_description">[default: -1 = use auto-detect] CAUTION: Sets the register offset used for the view when using Super Immersive Mode Profile 2</string>
+    <string name="vr_immersive_eye_indicator_title">Eye Indicator Register [Optional]</string>
+    <string name="vr_immersive_eye_indicator_description">[Leave blank for auto-detect] CAUTION: Sets the register and index offset used for identifying which eye is being drawn e.g 87,2</string>
+    <string name="vr_immersive_pos_game_scaler_title">Depth Factor Multiplier</string>
+    <string name="vr_immersive_pos_game_scaler_description">Adjusts how much the depth slider affects the game camera (movement/separation). Some games require smaller/larger values, so this multiplier adjusts how much movement the depth setting causes</string>
+    <string name="vr_ribbon_menus_text_label">Menus:</string>
+    <string name="header_instructions_text">To Move a Panel:</string>
+    <string name="vertical_header_text">Vertical Movement</string>
+    <string name="vertical_instruction_1_text">Press and hold the index trigger while targeting the panel.</string>
+    <string name="vertical_instruction_2_text">Slide the motion controller up or down to adjust the panel\'s vertical position.</string>
+    <string name="depth_header_text">Depth Adjustment</string>
+    <string name="depth_top_panel_instruction_text">(Top Panel) Move the thumbstick forward to extend deeper or pull backward to bring it closer.</string>
+    <string name="depth_lower_panel_instruction_text">(Lower Panel) Move the thumbstick to adjust the panel angle towards or away from you.</string>
+    <string name="horizontal_instruction_toggle_text">Use the toggle to enable or disable horizontal movement.</string>
+    <string name="horizontal_instruction_slide_text">With horizontal movement enabled, slide left or right to adjust horizontally.</string>
+    <string name="reset_button_text">Reset</string>
+    <string name="reset_header_text">Reset</string>
+    <string name="reset_instruction_text">Press this button to reset position.</string>
+    <string name="horizontal_header_text">Horizontal Movement</string>
+    <string name="toggle_off_text">Off</string>
+    <string name="toggle_on_text">On</string>
+    <string name="vr_stats_game_label">Game</string>
+    <string name="vr_stats_fps_label">FPS</string>
+    <string name="vr_stats_game_frame_time_label">Frame Time</string>
+    <string name="vr_stats_ms_unit">ms</string>
+    <string name="vr_stats_emulation_speed_label">Emulation Speed</string>
+    <string name="vr_stats_cpu_util_label">CPU Usage</string>
+    <string name="vr_stats_gpu_util_label">GPU Usage</string>
+    <string name="vr_stats_vr_app_label">VR App</string>
+    <string name="vr_stats_gpu_frame_time_label">GPU Frame Time</string>
+    <string name="vr_stats_cpu_frame_time_label">CPU Frame Time</string>
+    <string name="vr_stats_vr_compositor_label">VR Compositor</string>
+    <string name="vr_stats_comp_tear_count">Tear Count (total)</string>
+    <string name="vr_stats_build_version_label">App Version</string>
+    <string name="vr_stats_input_latency_label">Input Latency</string>
+</resources>

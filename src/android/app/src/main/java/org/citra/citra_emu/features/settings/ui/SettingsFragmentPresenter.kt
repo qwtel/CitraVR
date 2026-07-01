@@ -2072,30 +2072,30 @@ class SettingsFragmentPresenter(private val fragmentView: SettingsFragmentView) 
             )
             add(
                 SingleChoiceSetting(
-                        IntSetting.VR_IMMERSIVE_POSITIONAL_GAME_SCALER,
-                        R.string.vr_immersive_pos_game_scaler_title,
-                        R.string.vr_immersive_pos_game_scaler_description,
-                        R.array.vrPosFactorGameScalerNames,
-                        R.array.vrPosFactorGameScalerValues,
-                        IntSetting.VR_IMMERSIVE_POSITIONAL_GAME_SCALER.key,
-                        IntSetting.VR_IMMERSIVE_POSITIONAL_GAME_SCALER.defaultValue
+                    IntSetting.VR_IMMERSIVE_POSITIONAL_GAME_SCALER,
+                    R.string.vr_immersive_pos_game_scaler_title,
+                    R.string.vr_immersive_pos_game_scaler_description,
+                    R.array.vrPosFactorGameScalerNames,
+                    R.array.vrPosFactorGameScalerValues,
+                    IntSetting.VR_IMMERSIVE_POSITIONAL_GAME_SCALER.key,
+                    IntSetting.VR_IMMERSIVE_POSITIONAL_GAME_SCALER.defaultValue
                 )
             )
             add(
                 SliderSetting(
-                        IntSetting.VR_SI_MODE_REGISTER_OFFSET,
-                        R.string.vr_si_mode_register_offset_title,
-                        R.string.vr_si_mode_register_offset_description,
-                        -1,
-                        92,
-                        "register",
-                        IntSetting.VR_SI_MODE_REGISTER_OFFSET.key,
-                        IntSetting.VR_SI_MODE_REGISTER_OFFSET.defaultValue.toFloat()
+                    IntSetting.VR_SI_MODE_REGISTER_OFFSET,
+                    R.string.vr_si_mode_register_offset_title,
+                    R.string.vr_si_mode_register_offset_description,
+                    -1,
+                    92,
+                    "register",
+                    IntSetting.VR_SI_MODE_REGISTER_OFFSET.key,
+                    IntSetting.VR_SI_MODE_REGISTER_OFFSET.defaultValue.toFloat()
                 )
             )
             add(
                 StringInputSetting(
-                    StringSetting.VR_IMMMERSIVE_EYE_INDICATOR,
+                    StringSetting.VR_IMMERSIVE_EYE_INDICATOR,
                     R.string.vr_immersive_eye_indicator_title,
                     R.string.vr_immersive_eye_indicator_description,
                     ""

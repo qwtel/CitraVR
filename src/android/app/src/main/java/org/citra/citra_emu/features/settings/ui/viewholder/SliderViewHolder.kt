@@ -35,9 +35,13 @@ class SliderViewHolder(val binding: ListItemSettingBinding, adapter: SettingsAda
                 (setting.setting as IntSetting).int == 0 -> {
                 "${VRUtils.defaultResolutionFactor}${setting.units}"
             }
+
             setting.setting is ScaledFloatSetting ->
                 "${(setting.setting as ScaledFloatSetting).float.toInt()}${setting.units}"
-            setting.setting is FloatSetting -> "${(setting.setting as AbstractFloatSetting).float}${setting.units}"
+
+            setting.setting is FloatSetting ->
+                "${(setting.setting as AbstractFloatSetting).float}${setting.units}"
+
             else -> "${(setting.setting as AbstractIntSetting).int}${setting.units}"
         }
 

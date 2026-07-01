@@ -9,7 +9,6 @@
 #include "video_core/shader/generator/glsl_shader_decompiler.h"
 #include "video_core/shader/generator/glsl_shader_gen.h"
 #include "video_core/shader/generator/shader_gen.h"
-#include "common/settings.h"
 
 using VSOutputAttributes = Pica::RasterizerRegs::VSOutputAttributes;
 
@@ -144,8 +143,6 @@ void main() {
 
     return out;
 }
-
-
 
 std::string_view MakeLoadPrefix(AttribLoadFlags flag) {
     if (True(flag & AttribLoadFlags::Float)) {

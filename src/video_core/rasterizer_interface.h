@@ -80,10 +80,10 @@ public:
         [[maybe_unused]] const std::atomic_bool& stop_loading,
         [[maybe_unused]] const DiskResourceLoadCallback& callback) {}
 
-    virtual void SyncEntireState() {}
-
     /// Set VR position data on the rasterizer
-    virtual void SetVRData(const int32_t &vrImmersiveMode, const float& immersiveModeFactor, int uoffset, const float& gamePosScaler, const float inv_view[16]) {}
+    virtual void SetVRData(const int32_t& vr_immersive_mode, const float& immersive_mode_factor,
+                           int uoffset, const float& game_pos_scaler,
+                           const float inv_view[16]) {}
 
     virtual void SwitchDiskResources([[maybe_unused]] u64 title_id) {}
 

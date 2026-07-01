@@ -330,54 +330,60 @@ void Config::ReadValues() {
 
     // VR
 
-    // Note: hmdType is not read as a preference. It is initialized here so that it can
-    // be used to determine per-hmd settings in the config
+    // Note: HMD type is not read as a preference. It is initialized here so that it can
+    // be used to determine per-HMD settings in the config.
     {
-      const std::string hmdTypeStr = VRSettings::GetHMDTypeStr();
-      ANDROID_ONLY_LOGI("HMD type: %s", hmdTypeStr.c_str());
-      VRSettings::values.hmd_type = VRSettings::HmdTypeFromStr(hmdTypeStr);
+        const std::string hmd_type_str = VRSettings::GetHMDTypeStr();
+        ANDROID_ONLY_LOGI("HMD type: %s", hmd_type_str.c_str());
+        VRSettings::values.hmd_type = VRSettings::HmdTypeFromStr(hmd_type_str);
     }
-    VRSettings::values.vr_environment = VRSettings::values.extra_performance_mode_enabled ?
-      static_cast<long>(VRSettings::VREnvironmentType::VOID) : android_config->GetInteger(
-          "VR", "vr_environment",
-          static_cast<long>(VRSettings::values.hmd_type == VRSettings::HMDType::QUEST3 ?
-            VRSettings::VREnvironmentType::PASSTHROUGH : VRSettings::VREnvironmentType::VOID));
-    VRSettings::values.cpu_level =
-      VRSettings::values.extra_performance_mode_enabled ? XR_HIGHEST_CPU_PERF_LEVEL
-      : VRSettings::CPUPrefToPerfSettingsLevel(android_config->GetInteger(
-            "VR", "vr_cpu_level", 3));
+    const bool defaults_to_passthrough =
+        VRSettings::values.hmd_type == VRSettings::HMDType::QUEST3 ||
+        VRSettings::values.hmd_type == VRSettings::HMDType::QUEST3S;
+    const auto default_environment = defaults_to_passthrough ?
+        VRSettings::VREnvironmentType::PASSTHROUGH :
+        VRSettings::VREnvironmentType::VOID;
+    VRSettings::values.vr_environment = VRSettings::values.extra_performance_mode_enabled
+        ? static_cast<long>(VRSettings::VREnvironmentType::VOID)
+        : android_config->GetInteger(
+              "VR", "vr_environment", static_cast<long>(default_environment));
+    VRSettings::values.cpu_level = VRSettings::values.extra_performance_mode_enabled
+        ? XR_HIGHEST_CPU_PERF_LEVEL
+        : VRSettings::CPUPrefToPerfSettingsLevel(
+              android_config->GetInteger("VR", "vr_cpu_level", 3));
     VRSettings::values.display_refresh_rate_hz = android_config->GetInteger(
-            "VR", "vr_display_refresh_rate", 0);
-    VRSettings::values.vr_immersive_mode = android_config->GetInteger(
-            "VR", "vr_immersive_mode", 0);
+        "VR", "vr_display_refresh_rate", 0);
+    VRSettings::values.vr_immersive_mode =
+        android_config->GetInteger("VR", "vr_immersive_mode", 0);
     Settings::values.vr_immersive_mode = VRSettings::values.vr_immersive_mode;
     VRSettings::values.vr_dpad_thumbrest_mode = android_config->GetInteger(
-            "VR", "vr_dpad_thumbrest_mode", 0);
+        "VR", "vr_dpad_thumbrest_mode", 0);
     VRSettings::values.vr_motion_source = android_config->GetInteger(
-            "VR", "vr_motion_source", static_cast<long>(VRSettings::VRMotionSource::COMBINED));
+        "VR", "vr_motion_source", static_cast<long>(VRSettings::VRMotionSource::COMBINED));
     VRSettings::values.vr_si_mode_register_offset = android_config->GetInteger(
-            "VR", "vr_si_mode_register_offset", -1);
+        "VR", "vr_si_mode_register_offset", -1);
     Settings::values.vr_si_mode_register_offset = VRSettings::values.vr_si_mode_register_offset;
 
     // For immersive modes we use the factor_3d value as a camera movement factor
     // which means it affects stereo separation and positional movement
     // We have to divide this by 10 or the numbers are too big
-    VRSettings::values.vr_factor_3d = android_config->GetInteger(
-            "Renderer", "factor_3d", 100) / 10;
+    const auto factor_3d = android_config->GetInteger("Renderer", "factor_3d", 100);
+    VRSettings::values.vr_factor_3d = factor_3d / 10;
     VRSettings::values.vr_immersive_positional_game_scaler = android_config->GetInteger(
-            "VR", "vr_immersive_positional_game_scaler", 0);
-    Settings::values.vr_immersive_positional_game_scaler = VRSettings::values.vr_immersive_positional_game_scaler;
+        "VR", "vr_immersive_positional_game_scaler", 0);
+    Settings::values.vr_immersive_positional_game_scaler =
+        VRSettings::values.vr_immersive_positional_game_scaler;
 
     VRSettings::values.vr_immersive_eye_indicator = android_config->GetString(
-            "VR", "vr_immersive_eye_indicator", "");
+        "VR", "vr_immersive_eye_indicator", "");
     Settings::values.vr_immersive_eye_indicator = VRSettings::values.vr_immersive_eye_indicator;
 
     if (Settings::values.vr_immersive_mode.GetValue() > 0) {
-      ANDROID_ONLY_LOGI("VR immersive mode enabled");
+        ANDROID_ONLY_LOGI("VR immersive mode enabled");
 
-      // no point rendering passthrough in immersive mode
-      VRSettings::values.vr_environment =
-        static_cast<uint32_t>(VRSettings::VREnvironmentType::VOID);
+        // No point rendering passthrough in immersive mode.
+        VRSettings::values.vr_environment =
+            static_cast<uint32_t>(VRSettings::VREnvironmentType::VOID);
     }
 
     // Miscellaneous

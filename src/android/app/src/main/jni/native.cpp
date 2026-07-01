@@ -822,8 +822,8 @@ jboolean Java_org_citra_citra_1emu_NativeLibrary_onGamePadEvent([[maybe_unused]]
         } else {
             consumed = InputManager::ButtonHandler()->ReleaseKey(j_button);
         }
-  }
-  return static_cast<jboolean>(consumed);
+    }
+    return static_cast<jboolean>(consumed);
 }
 
 jboolean Java_org_citra_citra_1emu_NativeLibrary_onGamePadMoveEvent(
@@ -843,7 +843,7 @@ jboolean Java_org_citra_citra_1emu_NativeLibrary_onGamePadMoveEvent(
         y /= r;
     }
     if (InputManager::AnalogHandler()) {
-      return static_cast<jboolean>(InputManager::AnalogHandler()->MoveJoystick(axis, x, y));
+        return static_cast<jboolean>(InputManager::AnalogHandler()->MoveJoystick(axis, x, y));
     }
     return static_cast<jboolean>(false);
 }
@@ -851,11 +851,11 @@ jboolean Java_org_citra_citra_1emu_NativeLibrary_onGamePadMoveEvent(
 jboolean Java_org_citra_citra_1emu_NativeLibrary_onGamePadAxisEvent(
     [[maybe_unused]] JNIEnv* env, [[maybe_unused]] jobject obj, [[maybe_unused]] jstring j_device,
     jint axis_id, jfloat axis_val) {
-  if (InputManager::ButtonHandler()) {
-    return static_cast<jboolean>(
-        InputManager::ButtonHandler()->AnalogButtonEvent(axis_id, axis_val));
-  }
-  return static_cast<jboolean>(false);
+    if (InputManager::ButtonHandler()) {
+        return static_cast<jboolean>(
+            InputManager::ButtonHandler()->AnalogButtonEvent(axis_id, axis_val));
+    }
+    return static_cast<jboolean>(false);
 }
 
 jboolean Java_org_citra_citra_1emu_NativeLibrary_onTouchEvent([[maybe_unused]] JNIEnv* env,

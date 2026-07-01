@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Blue Theme Colors -->
     <color name="citra_primary_blue">#B7C4FF</color>
     <color name="citra_onPrimary_blue">#002681</color>
     <color name="citra_primaryContainer_blue">#0039B5</color>
@@ -23,6 +25,8 @@
     <color name="citra_inverseSurface_blue">#E4E1E6</color>
     <color name="citra_inversePrimary_blue">#154FE2</color>
     <color name="citra_surfaceTint_blue">#B7C4FF</color>
+
+    <!-- Cyan Theme Colors -->
     <color name="citra_primary_cyan">#B7FFF7</color>
     <color name="citra_onPrimary_cyan">#007D81</color>
     <color name="citra_primaryContainer_cyan">#00A0B5</color>
@@ -46,6 +50,8 @@
     <color name="citra_inverseSurface_cyan">#E1E6E5</color>
     <color name="citra_inversePrimary_cyan">#15E2D1</color>
     <color name="citra_surfaceTint_cyan">#B7C4FF</color>
+
+    <!-- Red Theme Colors -->
     <color name="citra_primary_red">#FFB7B7</color>
     <color name="citra_onPrimary_red">#810000</color>
     <color name="citra_primaryContainer_red">#B50000</color>
@@ -69,6 +75,8 @@
     <color name="citra_inverseSurface_red">#E6E1E1</color>
     <color name="citra_inversePrimary_red">#E21515</color>
     <color name="citra_surfaceTint_red">#FFB7B7</color>
+
+    <!-- Green Theme Colors -->
     <color name="citra_primary_green">#D0FFB7</color>
     <color name="citra_onPrimary_green">#368100</color>
     <color name="citra_primaryContainer_green">#1BB500</color>
@@ -92,6 +100,8 @@
     <color name="citra_inverseSurface_green">#E2E6E1</color>
     <color name="citra_inversePrimary_green">#82E215</color>
     <color name="citra_surfaceTint_green">#CDFFB7</color>
+
+    <!-- Yellow Theme Colors -->
     <color name="citra_primary_yellow">#FFEDB7</color>
     <color name="citra_onPrimary_yellow">#817F00</color>
     <color name="citra_primaryContainer_yellow">#B5A300</color>
@@ -115,6 +125,8 @@
     <color name="citra_inverseSurface_yellow">#E6E6E1</color>
     <color name="citra_inversePrimary_yellow">#DBE215</color>
     <color name="citra_surfaceTint_yellow">#FFFBB7</color>
+
+    <!-- Orange Theme Colors -->
     <color name="citra_primary_orange">#FFCBB7</color>
     <color name="citra_onPrimary_orange">#812500</color>
     <color name="citra_primaryContainer_orange">#B55400</color>
@@ -138,6 +150,8 @@
     <color name="citra_inverseSurface_orange">#E6E3E1</color>
     <color name="citra_inversePrimary_orange">#E26E15</color>
     <color name="citra_surfaceTint_orange">#FFD4B7</color>
+
+    <!-- Violet Theme Colors -->
     <color name="citra_primary_violet">#DAB7FF</color>
     <color name="citra_onPrimary_violet">#350068</color>
     <color name="citra_primaryContainer_violet">#5A00B5</color>
@@ -161,6 +175,8 @@
     <color name="citra_inverseSurface_violet">#E6E4E6</color>
     <color name="citra_inversePrimary_violet">#B154E2</color>
     <color name="citra_surfaceTint_violet">#DAB7FF</color>
+
+    <!-- Pink Theme Colors -->
     <color name="citra_primary_pink">#FFB7C5</color>
     <color name="citra_onPrimary_pink">#81001E</color>
     <color name="citra_primaryContainer_pink">#B50033</color>
@@ -184,6 +200,8 @@
     <color name="citra_inverseSurface_pink">#E6E1E2</color>
     <color name="citra_inversePrimary_pink">#E21556</color>
     <color name="citra_surfaceTint_pink">#FFB7D6</color>
+
+    <!-- Gray Theme Colors -->
     <color name="citra_primary_gray">#B7B7B7</color>
     <color name="citra_onPrimary_gray">#2B2B2B</color>
     <color name="citra_primaryContainer_gray">#424242</color>
@@ -207,6 +225,8 @@
     <color name="citra_inverseSurface_gray">#E4E4E4</color>
     <color name="citra_inversePrimary_gray">#B7B7B7</color>
     <color name="citra_surfaceTint_gray">#B7B7B7</color>
+
+    <!-- Common Colors Across All Themes -->
     <color name="citra_transparent_black">#80000000</color>
     <color name="citra_outlineVariant">#45464F</color>
     <color name="citra_error">#FFB4AB</color>

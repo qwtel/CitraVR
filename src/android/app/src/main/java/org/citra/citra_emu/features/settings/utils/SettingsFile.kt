@@ -176,9 +176,7 @@ object SettingsFile {
             generalSectionName
         }
 
-    fun getSettingsFile(fileName: String): DocumentFile {
-        return getSettingsFile(fileName, "ini.vr")
-    }
+    fun getSettingsFile(fileName: String): DocumentFile = getSettingsFile(fileName, "ini.vr")
 
     fun getSettingsFile(fileName: String, ext: String): DocumentFile {
         val root = DocumentFile.fromTreeUri(CitraApplication.appContext, Uri.parse(userDirectory))

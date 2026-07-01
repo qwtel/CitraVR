@@ -183,7 +183,10 @@ object SoftwareKeyboard {
             return
         }
         val keyboardText = text ?: ""
-        Log.debug("[SoftwareKeyboard] button positive: \"$keyboardText\" config button: ${config.buttonConfig}")
+        Log.debug(
+            "[SoftwareKeyboard] button positive: \"$keyboardText\" " +
+                "config button: ${config.buttonConfig}"
+        )
         data = KeyboardData(config.buttonConfig, keyboardText)
         val error = ValidateInput(data.text)
         if (error != ValidationError.None) {

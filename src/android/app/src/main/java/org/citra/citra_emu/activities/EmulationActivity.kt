@@ -388,10 +388,19 @@ open class EmulationActivity : AppCompatActivity() {
             val origValue = event.getAxisValue(axis)
             var value = ControllerMappingHelper.scaleAxis(input, axis, origValue)
             val nextMapping =
-                preferences.getInt(InputBindingSetting.getInputAxisButtonKey(axis), VRUtils.getDefaultAxisMapping(axis))
+                preferences.getInt(
+                    InputBindingSetting.getInputAxisButtonKey(axis),
+                    VRUtils.getDefaultAxisMapping(axis)
+                )
             val guestOrientation =
-                preferences.getInt(InputBindingSetting.getInputAxisOrientationKey(axis), VRUtils.getDefaultOrientationMapping(axis))
-            val inverted = preferences.getBoolean(InputBindingSetting.getInputAxisInvertedKey(axis), false)
+                preferences.getInt(
+                    InputBindingSetting.getInputAxisOrientationKey(axis),
+                    VRUtils.getDefaultOrientationMapping(axis)
+                )
+            val inverted = preferences.getBoolean(
+                InputBindingSetting.getInputAxisInvertedKey(axis),
+                false
+            )
             if (nextMapping == -1 || guestOrientation == -1) {
                 // Axis is unmapped
                 continue
@@ -423,7 +432,7 @@ open class EmulationActivity : AppCompatActivity() {
                 NativeLibrary.ButtonType.DPAD -> {
                     val isAlreadyMappedToActive = axisValuesDPad[guestOrientation] != 0f
                     if (isCurrentAxisActive || !isAlreadyMappedToActive) {
-                      axisValuesDPad[guestOrientation] = value
+                        axisValuesDPad[guestOrientation] = value
                     }
                 }
 
@@ -455,7 +464,7 @@ open class EmulationActivity : AppCompatActivity() {
                     val isAlreadyMappedToActive = isTriggerPressedZR
                     isTriggerPressedZRMapped = true
                     if (isCurrentAxisActive || !isAlreadyMappedToActive) {
-                      isTriggerPressedZR = value != 0f
+                        isTriggerPressedZR = value != 0f
                     }
                 }
             }

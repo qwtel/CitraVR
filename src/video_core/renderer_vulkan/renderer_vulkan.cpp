@@ -108,8 +108,11 @@ static bool IsLowRefreshRate() {
 }
 } // Anonymous namespace
 
-void ApplyVrAtlasFlip(const float& top, const float& bottom) {
-    std::swap(const_cast<float&>(top), const_cast<float&>(bottom));
+template <typename TextureCoordinates>
+void ApplyVrAtlasFlip(TextureCoordinates& texcoords) {
+#ifdef ANDROID
+    std::swap(texcoords.top, texcoords.bottom);
+#endif
 }
 
 RendererVulkan::RendererVulkan(Core::System& system, Pica::PicaCore& pica_,
@@ -737,8 +740,8 @@ void RendererVulkan::ReloadPipeline(Settings::StereoRenderOption render_3d) {
 void RendererVulkan::DrawSingleScreen(u32 screen_id, float x, float y, float w, float h,
                                       Layout::DisplayOrientation orientation) {
     const ScreenInfo& screen_info = screen_infos[screen_id];
-    const auto& texcoords = screen_info.texcoords;
-    ApplyVrAtlasFlip(texcoords.top, texcoords.bottom);
+    auto texcoords = screen_info.texcoords;
+    ApplyVrAtlasFlip(texcoords);
 
     std::array<ScreenRectVertex, 4> vertices;
     switch (orientation) {
@@ -810,8 +813,8 @@ void RendererVulkan::DrawSingleScreenStereo(u32 screen_id_l, u32 screen_id_r, fl
                                             float w, float h,
                                             Layout::DisplayOrientation orientation) {
     const ScreenInfo& screen_info_l = screen_infos[screen_id_l];
-    const auto& texcoords = screen_info_l.texcoords;
-    ApplyVrAtlasFlip(texcoords.top, texcoords.bottom);
+    auto texcoords = screen_info_l.texcoords;
+    ApplyVrAtlasFlip(texcoords);
 
     std::array<ScreenRectVertex, 4> vertices;
     switch (orientation) {

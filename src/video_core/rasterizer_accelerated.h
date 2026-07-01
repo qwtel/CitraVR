@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "common/vector_math.h"
 #include "video_core/rasterizer_interface.h"
 #include "video_core/shader/generator/pica_fs_config.h"
 #include "video_core/shader/generator/shader_uniforms.h"
@@ -30,7 +31,8 @@ protected:
     /// Sync vertex and framgent uniforms from PICA registers
     void SyncDrawUniforms();
 
-    void SetVRData(const int32_t  &vrImmersiveMode, const float& immersiveModeFactor, int uoffset, const float& gamePosScaler, const float inv_view[16]) override;
+    void SetVRData(const int32_t& vr_immersive_mode, const float& immersive_mode_factor,
+                   int uoffset, const float& game_pos_scaler, const float inv_view[16]) override;
 
 protected:
     /// Structure that the hardware rendered vertices are composed of

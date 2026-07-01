@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Home Strings -->
     <string name="grid_menu_core_settings">Asetukset</string>
     <string name="controller_c">C-Tikku</string>
     <string name="controller_triggers">Liipaisimet</string>
     <string name="controller_dpad">D-Pad</string>
+    <!-- Generic buttons (Shared with lots of stuff) -->
     <string name="generic_buttons">Nappulat</string>
     <string name="init_clock">Järjestelmän kellotyyppi</string>
     <string name="init_clock_description">Aseta emuloidun 3DS:n kello samaksi kuin laitteesi kello, tai aloita kello simuloidusta päivämäärästä ja ajasta.</string>
     <string name="emulated_region">Emuloitu alue</string>
     <string name="emulated_language">Emuloitu kieli</string>
+    <!-- Camera settings strings -->
     <string name="inner_camera">Sisäkamera</string>
     <string name="outer_left_camera">Vasen Ulkokamera</string>
     <string name="outer_right_camera">Oikea Ulkokamera</string>
@@ -20,17 +24,23 @@
     <string name="camera_facing_back">Takapuoli</string>
     <string name="camera_facing_external">Ulkoinen</string>
     <string name="image_flip">Kuvan kääntö</string>
+
     <string name="frame_limit_enable">Aktivoi nopeuden rajoitus</string>
     <string name="frame_limit_slider">Rajoita nopeusprosenttia</string>
     <string name="audio_stretch">Aktivoi äänen venytys</string>
+    <!-- Debug settings strings -->
     <string name="cpu_jit">Aktivoi CPU JIT</string>
     <string name="cpu_jit_description">Käyttää Just-in-Time (JIT) kääntäjää prosessorin emulointiin. Kun tämä on päällä, pelien suorituskyky on huomattavasti parempi.</string>
     <string name="hw_shaders">Aktivoi Laitteistovarjostin</string>
     <string name="hw_shaders_description">Käyttää laitteistoa emuloidakseen 3DS:n varjostimia. Kun tämä on päällä, pelien suorituskyky on huomattavasti parempi.</string>
     <string name="vsync">Aktivoi V-Sync</string>
+    <!-- Miscellaneous -->
     <string name="clear">Tyhjennä</string>
     <string name="slider_default">Oletus</string>
+    <!-- Add Directory Screen-->
     <string name="select_game_folder">Valitse pelikansio</string>
+
+    <!-- Preferences Screen -->
     <string name="preferences_settings">Asetukset</string>
     <string name="preferences_general">Yleinen</string>
     <string name="preferences_system">Laite</string>
@@ -47,24 +57,14 @@
     <string name="emulation_close_game">Sulje peli</string>
     <string name="emulation_close_game_message">Oletko varma että haluat sulkea nykyisen pelin?</string>
     <string name="load_settings">Ladataan asetuksia...</string>
+
+    <!-- Software Keyboard -->
     <string name="software_keyboard">Laitteistonäppäimistö</string>
     <string name="i_forgot">Unohdin</string>
     <string name="fixed_length_required">Tekstin pituus ei ole oikein (pitäisi olla %d merkkiä) </string>
     <string name="max_length_exceeded">Teksti on liian pitkä (ei pitäisi olla enempää kuin %d merkkiä)</string>
-    <string name="app_disclaimer">Tämä sovellus pelaa Nintendo 3DS-käsikonsolin pelejä. Pelejä itse ei tule sovelluksen mukana.\n\nEnnen kuin jatkat, laita itse omistamasi 3DS-pelien pelitiedostot laitteesi tallennustilaan.</string>
-    <string name="app_notification_channel_description">AzaharXR 3DS-emulaattorin ilmoitukset</string>
-    <string name="app_notification_running">AzaharXR on päällä</string>
-    <string name="controller_axis_vertical">Ylä/ala-akseli</string>
-    <string name="controller_axis_horizontal">Vasen/oikea akseli</string>
-    <string name="input_binding_description_vertical_axis">Liikuta tattia ylös tai alas.</string>
-    <string name="input_binding_description_horizontal_axis">Liikuta tattia vasemmalle tai oikealle.</string>
-    <string name="design">Vaihda teema (Vaalea, Tumma)</string>
-    <string name="design_updated">Teema päivittyy kun asetukset suljetaan</string>
-    <string name="init_time">Järjestelmän kellon aloitusajan yliajo.</string>
-    <string name="vsync_description">Synkronoi pelin virkistystaajuus laitteesi virkistystaajuuteen.</string>
-    <string name="frame_limit_enable_description">Kun aktivoitu, emulaation nopeus on rajoitettu asetettuun prosenttiin normaalista nopeudesta.</string>
-    <string name="auto">Automaattinen mittakaava</string>
-    <string name="emulation_screen_layout_landscape">Oletus</string>
+
+    <!-- AzaharXR -->
     <string name="preferences_vr">VR</string>
     <string name="vr_background">VR -ympäristö</string>
     <string name="vr_error_two_instances_title">VIRHE: havaitsi kaksi AzaharXR -tapausta</string>
@@ -72,15 +72,28 @@
     <string name="vr_extra_performance_mode">VR Extra Performance -tila</string>
     <string name="vr_cpu_level">CPU -taso</string>
     <string name="vr_cpu_level_description">Korkeammat tasot voivat parantaa audio/emulointia, mutta tyhjentää akun nopeammin</string>
+    <string name="vr_dpad_thumbrest_mode">Thumbrest D-Pad Mode</string>
+    <string name="vr_dpad_thumbrest_mode_description">Choose which thumbrest can turn a thumbstick into the D-Pad.</string>
+    <string name="vr_dpad_thumbrest_mode_both">Either thumbrest, opposite stick</string>
+    <string name="vr_dpad_thumbrest_mode_left_to_right">Left thumbrest, right stick only</string>
+    <string name="vr_motion_source">Motion Controls Source</string>
+    <string name="vr_motion_source_description">Use a tracked VR device as the 3DS motion sensor.</string>
+    <string name="vr_motion_source_off">Off</string>
+    <string name="vr_motion_source_hmd">HMD</string>
+    <string name="vr_motion_source_left_controller">Left controller</string>
+    <string name="vr_motion_source_right_controller">Right controller</string>
+    <string name="vr_motion_source_combined">Combined</string>
     <string name="vr_immersive_mode_title">[VAROITUS: Grafiikkaesineitä] Impersiivinen tila (kokeellinen)</string>
     <string name="vr_immersive_mode_description">Laajentaa yläreunaa sylinterin ympärille syventävään pelattamiseen</string>
-    <string name="vr_graphics_warning">Vaara: Kaikki pelit/tasot eivät näytä hyvältä syventävässä tilassa. Suuret visuaaliset esineet ovat yleisiä, kun tämä vaihtoehto on valittu</string>
-    <string name="vr_graphics_warning_short">VAROITUS: Tämä aiheuttaa visuaalista esinettä useimmissa sisällöissä</string>
     <string name="vr_new_3ds_description">Tulisi olla käytössä useimmille nimikkeille. Kun vammainen poistetaan, parantaa tiettyjen nimikkeiden suorituskykyä (esim.  Star Fox 64 3D)</string>
     <string name="release_notes_title">Julkaisutiedot</string>
     <string name="vr_licenses_description">Projektit, jotka tekevät Azaharista ja AzaharXR:stä mahdolliseksi</string>
     <string name="game_compat_tooltip">Pelin yhteensopivuuslomake</string>
     <string name="vr_extra_performance_mode_description">Ohittaa muiden asetusten arvon yleiskustannusten minimoimiseksi ja suorituskyvyn maksimimiseksi. Huomaa: Kun tämä asetus on käytössä, seuraavien asetusten käyttäjän arvot jätetään huomiotta: VR -ympäristö (valittuu aina tyhjä), äänen venytys (pois käytöstä)</string>
+    <string name="vr_display_refresh_rate">Display Refresh Rate</string>
+    <string name="vr_display_refresh_rate_description">120 Hz mode might help with frame pacing when playing 60 Hz games.</string>
+    <string name="vr_display_refresh_rate_default">System default</string>
+    <string name="vr_display_refresh_rate_120">120 Hz</string>
     <string name="vr_notice_title">Huomio:</string>
     <string name="vr_notice_description">Ensimmäisen pelikerran tai tason aikana saatat kokea lyhyitä taukoja tai äänen nykimistä.
 
@@ -90,12 +103,10 @@ Shadereiden latautumisen jälkeen ne tallennetaan laitteeseen, mikä estää nä
     <string name="immersive_mode">Immersiivinen Tila</string>
     <string name="vr_si_mode_register_offset_title">Rekisterin Siirtymä</string>
     <string name="vr_si_mode_register_offset_description">Asettaa rekisterin siirtymän, jota käytetään näkymässä käytettäessä Super Immersive Mode Profiilia 2 - vaihtelee pelistä riippuen.</string>
-    <string name="vr_immersive_pos_factor_title">Sijainnillisen Liikkeen Kerroin</string>
-    <string name="vr_immersive_pos_factor_description">Säätää, kuinka paljon liike vasemmalle/oikealle/ylös/alas vaikuttaa pelikameraan (0 = pois käytöstä)</string>
+    <string name="vr_immersive_eye_indicator_title">Eye Indicator Register [Optional]</string>
+    <string name="vr_immersive_eye_indicator_description">[Leave blank for auto-detect] CAUTION: Sets the register and index offset used for identifying which eye is being drawn e.g 87,2</string>
     <string name="vr_immersive_pos_game_scaler_title">Paikallisen Liikkeen Tekijän Kerroin</string>
     <string name="vr_immersive_pos_game_scaler_description">Säätää kuinka paljon liikkuminen vasemmalta/oikealta/ylös/alas vaikuttaa pelikameraan, joidenkin pelien vaatiessa suurempia arvoja, joten tämä kertoo Liike Kertoimen sijaintiin vaikuttavalta tekijältä.</string>
-    <string name="cancelling">Peruutetaan...</string>
-    <string name="start">Käynnistä</string>
     <string name="vr_ribbon_menus_text_label">Valikot:</string>
     <string name="header_instructions_text">Siirrä paneelia:</string>
     <string name="vertical_header_text">Pystysuuntainen liike</string>
@@ -113,6 +124,7 @@ Shadereiden latautumisen jälkeen ne tallennetaan laitteeseen, mikä estää nä
     <string name="toggle_off_text">Pois</string>
     <string name="toggle_on_text">Kytketty päälle</string>
     <string name="vr_stats_game_label">Peli</string>
+    <string name="vr_stats_fps_label">FPS</string>
     <string name="vr_stats_game_frame_time_label">Kehysaika</string>
     <string name="vr_stats_ms_unit">ms</string>
     <string name="vr_stats_emulation_speed_label">Emulaationopeus</string>

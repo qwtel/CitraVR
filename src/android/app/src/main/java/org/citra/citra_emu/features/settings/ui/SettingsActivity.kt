@@ -191,10 +191,14 @@ class SettingsActivity :
     }
 
     override fun showToastMessage(message: String, isLong: Boolean) {
-        // VR-SPECIFIC: 2D containers seem to mess up theming in some cases. This hack is necessary to ensure toasts
-        // show up with a white background and black text.
-        val toast: Toast =
-            Toast.makeText(this, Html.fromHtml("<font color='#000000' ><b>" + message + "</b></font>"), Toast.LENGTH_LONG)
+        // VR-SPECIFIC: 2D containers seem to mess up theming in some cases.
+        // This hack ensures toasts show up with a white background and black text.
+        val styledMessage = Html.fromHtml("<font color='#000000'><b>$message</b></font>")
+        val toast = Toast.makeText(
+            this,
+            styledMessage,
+            if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+        )
         toast.show()
     }
 

@@ -60,7 +60,11 @@ enum class IntSetting(
     DELAY_RENDER_THREAD_US(SettingKeys.delay_game_render_thread_us(), Settings.SECTION_RENDERER, 0),
     ORIENTATION_OPTION(SettingKeys.screen_orientation(), Settings.SECTION_LAYOUT, 2),
     TURBO_LIMIT(SettingKeys.turbo_limit(), Settings.SECTION_CORE, 200),
-    PERFORMANCE_OVERLAY_POSITION(SettingKeys.performance_overlay_position(), Settings.SECTION_LAYOUT, 0),
+    PERFORMANCE_OVERLAY_POSITION(
+        SettingKeys.performance_overlay_position(),
+        Settings.SECTION_LAYOUT,
+        0
+    ),
     RENDER_3D_WHICH_DISPLAY(
         SettingKeys.render_3d_which_display(),
         Settings.SECTION_RENDERER,
@@ -70,7 +74,13 @@ enum class IntSetting(
     VR_ENVIRONMENT(
         "vr_environment",
         Settings.SECTION_VR,
-        if (hMDType == VRUtils.HMDType.QUEST3.value) 1 else 2
+        if (hMDType == VRUtils.HMDType.QUEST3.value ||
+            hMDType == VRUtils.HMDType.QUEST3S.value
+        ) {
+            1
+        } else {
+            2
+        }
     ),
     VR_CPU_LEVEL("vr_cpu_level", Settings.SECTION_VR, 3),
     VR_DISPLAY_REFRESH_RATE("vr_display_refresh_rate", Settings.SECTION_VR, 0),
@@ -105,7 +115,7 @@ enum class IntSetting(
             INIT_CLOCK,
             GRAPHICS_API,
             AUDIO_INPUT_TYPE,
-            VR_DISPLAY_REFRESH_RATE,
+            VR_DISPLAY_REFRESH_RATE
         )
 
         fun from(key: String): IntSetting? = IntSetting.values().firstOrNull { it.key == key }

@@ -230,10 +230,10 @@ class EmulationFragment :
         }
 
         if (!VRUtils.isVR(activity)) {
-            Log.debug("[EmulationFragment] non-VR mode: adding surface callback");
+            Log.debug("[EmulationFragment] non-VR mode: adding surface callback")
             binding.surfaceEmulation.holder.addCallback(this)
         } else {
-            Log.debug("[EmulationFragment] VR mode: not adding surface callback");
+            Log.debug("[EmulationFragment] VR mode: not adding surface callback")
         }
         binding.doneControlConfig.setOnClickListener {
             binding.doneControlConfig.visibility = View.GONE
@@ -522,7 +522,7 @@ class EmulationFragment :
 
     fun surfaceCreated(surface: Surface) {
         Log.debug("[EmulationFragment] Surface created")
-        emulationState?.newSurface(surface, VRUtils.isVR(emulationActivity))
+        emulationState?.newSurface(surface, shouldReleaseSurface = false)
     }
 
     fun isDrawerOpen(): Boolean = binding.drawerLayout.isOpen
@@ -1620,7 +1620,7 @@ class EmulationFragment :
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
         Log.debug("[EmulationFragment] Surface changed. Resolution: " + width + "x" + height)
-        emulationState?.newSurface(holder.surface, !VRUtils.isVR(emulationActivity))
+        emulationState?.newSurface(holder.surface, shouldReleaseSurface = true)
     }
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {
@@ -1654,7 +1654,7 @@ class EmulationFragment :
     private class EmulationState(private val gamePath: String) {
         private var state: State
         private var surface: Surface? = null
-        private var isVrSurface : Boolean = false;
+        private var shouldReleaseSurface: Boolean = true
 
         init {
             // Starting state is stopped.
@@ -1732,9 +1732,9 @@ class EmulationFragment :
 
         // Surface callbacks
         @Synchronized
-        fun newSurface(surface: Surface?, isVrSurface: Boolean) {
+        fun newSurface(surface: Surface?, shouldReleaseSurface: Boolean) {
             this.surface = surface
-            this.isVrSurface = isVrSurface
+            this.shouldReleaseSurface = shouldReleaseSurface
             if (this.surface != null) {
                 runWithValidSurface()
             }
@@ -1746,7 +1746,7 @@ class EmulationFragment :
                 Log.warning("[EmulationFragment] clearSurface called, but surface already null.")
             } else {
                 surface = null
-                isVrSurface = false
+                shouldReleaseSurface = true
                 Log.debug("[EmulationFragment] Surface destroyed.")
                 when (state) {
                     State.RUNNING -> {
@@ -1766,7 +1766,7 @@ class EmulationFragment :
         }
 
         private fun runWithValidSurface() {
-            NativeLibrary.surfaceChanged(surface!!, isVrSurface)
+            NativeLibrary.surfaceChanged(surface!!, shouldReleaseSurface)
             when (state) {
                 State.STOPPED -> {
                     Thread({

@@ -14,18 +14,18 @@ object VRUtils {
     val defaultResolutionFactor: Int
         external get
 
-    // NOTE: keep this in-sync with HMDType in vr_settings.h
+    // NOTE: keep this in sync with HMDType in vr_settings.h.
     enum class HMDType(val value: Int) {
         UNKNOWN(0),
         QUEST1(1),
         QUEST2(2),
         QUEST3(3),
-        QUESTPRO(4)
-
+        QUESTPRO(4),
+        QUEST3S(5)
     }
 
     enum class Hotkey(val button: Int) {
-        CLOSE_GAME(org.citra.citra_emu.features.hotkeys.Hotkey.CLOSE_GAME.button);
+        CLOSE_GAME(org.citra.citra_emu.features.hotkeys.Hotkey.CLOSE_GAME.button)
     }
 
     val hotKeys = listOf(
@@ -52,46 +52,43 @@ object VRUtils {
         DPAD_RIGHT(NativeLibrary.ButtonType.DPAD_RIGHT, KeyEvent.KEYCODE_DPAD_RIGHT),
         TRIGGER_L(NativeLibrary.ButtonType.TRIGGER_L, KeyEvent.KEYCODE_BUTTON_L1),
         TRIGGER_R(NativeLibrary.ButtonType.TRIGGER_R, KeyEvent.KEYCODE_BUTTON_R1);
+
         // This companion object will hold the mapping from Android to Native Library
         companion object {
             // Initialize the map once and use it for lookups
-            val androidToNativeLibraryMap: Map<Int, Int> = values().associate { it.android to it.nativeLibrary }
+            val androidToNativeLibraryMap: Map<Int, Int> =
+                values().associate { it.android to it.nativeLibrary }
 
             // Function to get the Native Library value from an Android Key Code
-            inline fun androidToNativeLibrary(androidKeyCode: Int): Int? = androidToNativeLibraryMap[androidKeyCode]
+            inline fun androidToNativeLibrary(androidKeyCode: Int): Int? =
+                androidToNativeLibraryMap[androidKeyCode]
         }
     }
 
-  @JvmStatic
-  fun getDefaultAxisMapping(androidAxis: Int): Int {
-    return when (androidAxis) {
-      MotionEvent.AXIS_HAT_X -> NativeLibrary.ButtonType.DPAD
-      MotionEvent.AXIS_HAT_Y -> NativeLibrary.ButtonType.DPAD
-      14 -> NativeLibrary.ButtonType.STICK_C
-      11 -> NativeLibrary.ButtonType.STICK_C
-      1 -> NativeLibrary.ButtonType.STICK_LEFT
-      0 -> NativeLibrary.ButtonType.STICK_LEFT
-      else -> -1
+    @JvmStatic
+    fun getDefaultAxisMapping(androidAxis: Int): Int = when (androidAxis) {
+        MotionEvent.AXIS_HAT_X -> NativeLibrary.ButtonType.DPAD
+        MotionEvent.AXIS_HAT_Y -> NativeLibrary.ButtonType.DPAD
+        14 -> NativeLibrary.ButtonType.STICK_C
+        11 -> NativeLibrary.ButtonType.STICK_C
+        1 -> NativeLibrary.ButtonType.STICK_LEFT
+        0 -> NativeLibrary.ButtonType.STICK_LEFT
+        else -> -1
     }
-  }
-
-  @JvmStatic
-  fun getDefaultOrientationMapping(androidAxis: Int): Int {
-    return when (androidAxis) {
-      MotionEvent.AXIS_HAT_X -> 0
-      MotionEvent.AXIS_HAT_Y -> 1
-      14 -> 1
-      11 -> 0
-      1 -> 1
-      0 -> 0
-      else -> -1
-    }
-  }
 
     @JvmStatic
-    fun isVR(mainActivity: Activity?) : Boolean {
-        return mainActivity is VrActivity
+    fun getDefaultOrientationMapping(androidAxis: Int): Int = when (androidAxis) {
+        MotionEvent.AXIS_HAT_X -> 0
+        MotionEvent.AXIS_HAT_Y -> 1
+        14 -> 1
+        11 -> 0
+        1 -> 1
+        0 -> 0
+        else -> -1
     }
+
+    @JvmStatic
+    fun isVR(mainActivity: Activity?): Boolean = mainActivity is VrActivity
 
     const val PREF_RELEASE_VERSION_NAME_LAUNCH_CURRENT = "VR_ReleaseVersionName_LaunchCurrent"
     const val PREF_RELEASE_VERSION_NAME_LAUNCH_PREV = "VR_ReleaseVersionName_LaunchPrev"

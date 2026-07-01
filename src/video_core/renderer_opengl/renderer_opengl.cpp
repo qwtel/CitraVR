@@ -72,8 +72,11 @@ static std::array<GLfloat, 3 * 2> MakeOrthographicMatrix(const float width, cons
     return matrix;
 }
 
-void ApplyVrAtlasFlip(const float& top, const float& bottom) {
-    std::swap(const_cast<float&>(top), const_cast<float&>(bottom));
+template <typename TextureCoordinates>
+void ApplyVrAtlasFlip(TextureCoordinates& texcoords) {
+#ifdef ANDROID
+    std::swap(texcoords.top, texcoords.bottom);
+#endif
 }
 
 RendererOpenGL::RendererOpenGL(Core::System& system, Pica::PicaCore& pica_,
@@ -509,42 +512,14 @@ void RendererOpenGL::ConfigureFramebufferTexture(TextureInfo& texture,
     state.Apply();
 }
 
-// Function to clear alpha around the edge of a single box
-/*void ClearBoxAlpha(int x, int y, int width, int height) {
-    // Set clear color to transparent black
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-    // Enable alpha-only clearing
-    glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_TRUE);
-
-    // Top edge
-    glScissor(x, y + height - 10, width, 10);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // Bottom edge
-    glScissor(x, y, width, 10);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // Left edge
-    glScissor(x, y, 10, height);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // Right edge
-    glScissor(x + width - 10, y, 10, height);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // Restore color mask
-    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-}*/
-
 /**
  * Draws a single texture to the emulator window, rotating the texture to correct for the 3DS's LCD
  * rotation.
  */
 void RendererOpenGL::DrawSingleScreen(const ScreenInfo& screen_info, float x, float y, float w,
                                       float h, Layout::DisplayOrientation orientation) {
-    const auto& texcoords = screen_info.display_texcoords;
-    ApplyVrAtlasFlip(texcoords.top, texcoords.bottom);
+    auto texcoords = screen_info.display_texcoords;
+    ApplyVrAtlasFlip(texcoords);
 
     std::array<ScreenRectVertex, 4> vertices;
     switch (orientation) {
@@ -601,7 +576,6 @@ void RendererOpenGL::DrawSingleScreen(const ScreenInfo& screen_info, float x, fl
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices.data());
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-   // ClearBoxAlpha(x, y, h, w);
     state.texture_units[0].texture_2d = 0;
     state.texture_units[0].sampler = 0;
     state.Apply();
@@ -615,8 +589,8 @@ void RendererOpenGL::DrawSingleScreenStereo(const ScreenInfo& screen_info_l,
                                             const ScreenInfo& screen_info_r, float x, float y,
                                             float w, float h,
                                             Layout::DisplayOrientation orientation) {
-    const auto& texcoords = screen_info_l.display_texcoords;
-    ApplyVrAtlasFlip(texcoords.top, texcoords.bottom);
+    auto texcoords = screen_info_l.display_texcoords;
+    ApplyVrAtlasFlip(texcoords);
 
     std::array<ScreenRectVertex, 4> vertices;
     switch (orientation) {
@@ -766,8 +740,6 @@ void RendererOpenGL::ResetSecondLayerOpacity() {
     state.blend.color.alpha = 0.0f;
 }
 
-
-
 void RendererOpenGL::DrawTopScreen(const Layout::FramebufferLayout& layout,
                                    const Common::Rectangle<u32>& top_screen) {
     if (!layout.top_screen_enabled) {
@@ -829,7 +801,6 @@ void RendererOpenGL::DrawTopScreen(const Layout::FramebufferLayout& layout,
     }
 }
 
-
 void RendererOpenGL::DrawBottomScreen(const Layout::FramebufferLayout& layout,
                                       const Common::Rectangle<u32>& bottom_screen) {
     if (!layout.bottom_screen_enabled) {
@@ -890,7 +861,6 @@ void RendererOpenGL::DrawBottomScreen(const Layout::FramebufferLayout& layout,
     }
     }
 }
-
 
 void RendererOpenGL::TryPresent(int timeout_ms, bool is_secondary) {
     const auto& window = is_secondary ? *secondary_window : render_window;

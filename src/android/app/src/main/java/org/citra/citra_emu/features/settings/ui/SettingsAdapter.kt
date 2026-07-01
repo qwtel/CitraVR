@@ -46,8 +46,8 @@ import org.citra.citra_emu.features.settings.model.AbstractSetting
 import org.citra.citra_emu.features.settings.model.AbstractShortSetting
 import org.citra.citra_emu.features.settings.model.AbstractStringSetting
 import org.citra.citra_emu.features.settings.model.FloatSetting
-import org.citra.citra_emu.features.settings.model.ScaledFloatSetting
 import org.citra.citra_emu.features.settings.model.IntSetting
+import org.citra.citra_emu.features.settings.model.ScaledFloatSetting
 import org.citra.citra_emu.features.settings.model.view.DateTimeSetting
 import org.citra.citra_emu.features.settings.model.view.InputBindingSetting
 import org.citra.citra_emu.features.settings.model.view.MultiChoiceSetting
@@ -74,7 +74,6 @@ import org.citra.citra_emu.fragments.MessageDialogFragment
 import org.citra.citra_emu.fragments.MotionBottomSheetDialogFragment
 import org.citra.citra_emu.utils.SystemSaveGame
 import org.citra.citra_emu.vr.utils.VRUtils
-import java.lang.IllegalStateException
 
 class SettingsAdapter(private val fragmentView: SettingsFragmentView, public val context: Context) :
     RecyclerView.Adapter<SettingViewHolder?>(),
@@ -367,9 +366,13 @@ class SettingsAdapter(private val fragmentView: SettingsFragmentView, public val
                 it.setText(sliderProgress.toString())
             }
         } else {
+            val defaultResolutionFactorText =
+                "(${context.getString(R.string.auto)}) ${VRUtils.defaultResolutionFactor}"
             val sliderText =
-                if (item.key == IntSetting.RESOLUTION_FACTOR.key && sliderProgress.roundToInt() == 0) {
-                    "(${context.getString(R.string.auto)}) ${VRUtils.defaultResolutionFactor}"
+                if (item.key == IntSetting.RESOLUTION_FACTOR.key &&
+                    sliderProgress.roundToInt() == 0
+                ) {
+                    defaultResolutionFactorText
                 } else {
                     sliderProgress.roundToInt().toString()
                 }
@@ -404,10 +407,13 @@ class SettingsAdapter(private val fragmentView: SettingsFragmentView, public val
                 sliderProgress = (value * 100).roundToInt().toFloat() / 100f
                 var sliderString = sliderProgress.toString()
                 if (item.setting !is FloatSetting) {
+                    val defaultResolutionFactorText =
+                        "(${context.getString(R.string.auto)}) ${VRUtils.defaultResolutionFactor}"
                     sliderString =
                         if (item.key == IntSetting.RESOLUTION_FACTOR.key &&
-                            sliderProgress.roundToInt() == 0) {
-                            "(${context.getString(R.string.auto)}) ${VRUtils.defaultResolutionFactor}"
+                            sliderProgress.roundToInt() == 0
+                        ) {
+                            defaultResolutionFactorText
                         } else {
                             sliderProgress.roundToInt().toString()
                         }

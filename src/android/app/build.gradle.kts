@@ -69,8 +69,6 @@ android {
         versionCode = autoVersion
         versionName = getGitVersion()
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
         ndk {
             //noinspection ChromeOsAbiSupport
             abiFilters += abiFilter
@@ -82,9 +80,11 @@ android {
                     "-DENABLE_QT=0", // Don't use QT
                     "-DENABLE_SDL2=0", // Don't use SDL
                     "-DANDROID_ARM_NEON=true", // cryptopp requires Neon to work
-                    "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON", // Support Android 15 16KiB page sizes
+                    // Support Android 15 16KiB page sizes
+                    "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON",
                     "-DENABLE_GDBSTUB=OFF", // Disable GDB stub
-                    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" // Allow older vendored CMake projects with CMake 4+
+                    // Allow older vendored CMake projects with CMake 4+
+                    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
                 )
             }
         }
@@ -211,36 +211,32 @@ dependencies {
     implementation("io.coil-kt:coil:2.7.0")
     implementation("org.ini4j:ini4j:0.5.4")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
-
-    androidTestImplementation("androidx.test.ext:junit-ktx:1.2.1")
-    androidTestImplementation("junit:junit:4.12")
-
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
 }
 
 // Specify the destination file path and check path
-val downloadedVulkanLayersZip = file("${buildDir}/tmp/Vulkan-ValidationLayers.zip")
+val downloadedVulkanLayersZip = file("$buildDir/tmp/Vulkan-ValidationLayers.zip")
 val validationLayersExtractedPath = file(downloadedJniLibsPath)
 
-// Download Vulkan Validation Layers only if not already downloaded or extracted
+// Download Vulkan Validation Layers from the KhronosGroup GitHub.
+// Skip the download when validation layers are already extracted.
 val downloadVulkanValidationLayers = tasks.register<Download>("downloadVulkanValidationLayers") {
     src(
         "https://github.com/KhronosGroup/Vulkan-ValidationLayers/releases/download/vulkan-sdk-1.4.313.0/android-binaries-1.4.313.0.zip"
     )
     dest(downloadedVulkanLayersZip)
     onlyIf {
-        !validationLayersExtractedPath.exists() // Skip download if extracted files are already present
+        // Skip download if extracted files are already present
+        !validationLayersExtractedPath.exists()
     }
     onlyIfModified(true)
 }
 
-// Extract Vulkan Validation Layers only if not already extracted
+// Extract Vulkan Validation Layers into the downloaded native libraries directory.
 val unzipVulkanValidationLayers = tasks.register<Copy>("unzipVulkanValidationLayers") {
     dependsOn(downloadVulkanValidationLayers)
     from(zipTree(downloadVulkanValidationLayers.get().dest)) {
+        // Exclude the top level directory in the zip as it violates the expected jniLibs directory structure.
         eachFile {
-            // Exclude the top-level directory in the zip
             relativePath = RelativePath(true, *relativePath.segments.drop(1).toTypedArray())
         }
         includeEmptyDirs = false
@@ -274,6 +270,12 @@ fun getGitVersion(): String {
     } catch (e: Exception) {
         logger.error("Cannot find git, defaulting to dummy version number")
     }
+
+    if (System.getenv("GITHUB_ACTIONS") != null) {
+        val gitTag = System.getenv("GIT_TAG_NAME")
+        versionName = gitTag ?: versionName
+    }
+
     return versionName
 }
 

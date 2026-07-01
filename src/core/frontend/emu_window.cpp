@@ -15,7 +15,7 @@ namespace Frontend {
 static std::weak_ptr<EmuWindow::TouchState> global_touch_state;
 
 #ifdef ANDROID
-Layout::FramebufferLayout MakeCitraVRFramebufferLayout(u32 width, u32 height) {
+Layout::FramebufferLayout MakeAzaharXRFramebufferLayout(u32 width, u32 height) {
     const u32 top_height = height / 2;
     Layout::FramebufferLayout layout{
         width,
@@ -239,11 +239,11 @@ void EmuWindow::UpdateCurrentFramebufferLayout(u32 width, u32 height, bool is_po
 
 #ifdef ANDROID
     if (!is_secondary) {
-        layout = MakeCitraVRFramebufferLayout(width, height);
+        layout = MakeAzaharXRFramebufferLayout(width, height);
         UpdateMinimumWindowSize({Core::kScreenTopWidth, Core::kScreenTopHeight +
                                                         Core::kScreenBottomHeight});
         LOG_INFO(Frontend,
-                 "CitraVR framebuffer atlas forced: {}x{}, top={},{} {}x{}, bottom={},{} {}x{}, "
+                 "AzaharXR framebuffer atlas forced: {}x{}, top={},{} {}x{}, bottom={},{} {}x{}, "
                  "stereo=SideBySide",
                  layout.width, layout.height, layout.top_screen.left, layout.top_screen.top,
                  layout.top_screen.GetWidth(), layout.top_screen.GetHeight(),

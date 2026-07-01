@@ -73,8 +73,8 @@ struct VSUniformData {
     u32 flip_viewport;
     alignas(16) Common::Vec4f clip_coef;
 
-    //VR data at the end to ensure it doesn't interfere with existing uniforms' alignment
-    alignas(4) float vr_immersive_mode_factor;
+    // VR data at the end to ensure it doesn't interfere with existing uniforms' alignment.
+    alignas(4) float vr_immersive_mode_factor = 1.0f;
 };
 static_assert(sizeof(VSUniformData) == 48,
               "The size of the VSUniformData does not match the structure in the shader");

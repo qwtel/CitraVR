@@ -543,7 +543,11 @@ struct Values {
     SwitchableSetting<bool> use_display_refresh_rate_detection{
         true, Keys::use_display_refresh_rate_detection};
     Setting<bool> use_shader_jit{true, Keys::use_shader_jit};
+#ifdef ANDROID
     SwitchableSetting<u32, true> resolution_factor{0, 0, 10, Keys::resolution_factor};
+#else
+    SwitchableSetting<u32, true> resolution_factor{1, 0, 10, Keys::resolution_factor};
+#endif
     SwitchableSetting<bool> use_integer_scaling{false, Keys::use_integer_scaling};
     SwitchableSetting<double, true> frame_limit{100, 0, 1000, Keys::frame_limit};
     SwitchableSetting<double, true> turbo_limit{200, 0, 1000, Keys::turbo_limit};
@@ -604,9 +608,14 @@ struct Values {
     SwitchableSetting<float> bg_green{0.f, Keys::bg_green};
     SwitchableSetting<float> bg_blue{0.f, Keys::bg_blue};
 
+#ifdef ANDROID
     SwitchableSetting<StereoRenderOption> render_3d{StereoRenderOption::SideBySide,
                                                     Keys::render_3d};
     SwitchableSetting<u32> factor_3d{50, Keys::factor_3d};
+#else
+    SwitchableSetting<StereoRenderOption> render_3d{StereoRenderOption::Off, Keys::render_3d};
+    SwitchableSetting<u32> factor_3d{0, Keys::factor_3d};
+#endif
     SwitchableSetting<bool> swap_eyes_3d{false, Keys::swap_eyes_3d};
 
     SwitchableSetting<StereoWhichDisplay> render_3d_which_display{StereoWhichDisplay::None,
@@ -632,7 +641,11 @@ struct Values {
     // Audio
     bool audio_muted;
     SwitchableSetting<AudioEmulation> audio_emulation{AudioEmulation::HLE, Keys::audio_emulation};
+#ifdef ANDROID
     SwitchableSetting<bool> enable_audio_stretching{false, Keys::enable_audio_stretching};
+#else
+    SwitchableSetting<bool> enable_audio_stretching{true, Keys::enable_audio_stretching};
+#endif
     SwitchableSetting<bool> enable_realtime_audio{false, Keys::enable_realtime_audio};
     SwitchableSetting<float, true> volume{1.f, 0.f, 1.f, Keys::volume};
     Setting<AudioCore::SinkType> output_type{AudioCore::SinkType::Auto, Keys::output_type};

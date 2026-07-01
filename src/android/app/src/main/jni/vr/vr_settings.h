@@ -12,8 +12,6 @@ License     :   Licensed under GPLv3 or any later version.
 
 #pragma once
 
-#pragma once
-
 #include "OpenXR.h"
 
 #include <string>
@@ -24,7 +22,7 @@ License     :   Licensed under GPLv3 or any later version.
 
 namespace VRSettings {
 
-// NOTE: keep this in-sync with HMDType in sync with VRUtils.java
+// NOTE: keep this in sync with HMDType in VRUtils.kt.
 enum class HMDType { UNKNOWN = 0, QUEST1, QUEST2, QUEST3, QUESTPRO, QUEST3S };
 
 enum class VREnvironmentType { PASSTHROUGH = 1, VOID = 2 };

@@ -22,7 +22,7 @@ Values values = {};
 HMDType HmdTypeFromStr(const std::string& hmdType) {
     if (hmdType == "Quest") {
         return HMDType::QUEST1;
-    } else if (hmdType == "Quest" || hmdType == "Quest 2" || hmdType == "Miramar") {
+    } else if (hmdType == "Quest 2" || hmdType == "Miramar") {
         return HMDType::QUEST2;
     } else if (hmdType == "Quest 3") {
         return HMDType::QUEST3;

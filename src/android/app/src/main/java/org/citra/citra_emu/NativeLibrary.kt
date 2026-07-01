@@ -34,10 +34,9 @@ import org.citra.citra_emu.utils.FileUtil
 import org.citra.citra_emu.utils.GraphicsUtil
 import org.citra.citra_emu.utils.Log
 import org.citra.citra_emu.utils.RemovableStorageHelper
+import org.citra.citra_emu.viewmodel.CompressProgressDialogViewModel
 import org.citra.citra_emu.vr.VrActivity
 import org.citra.citra_emu.vr.ui.VrErrorMessageLayer
-import org.citra.citra_emu.viewmodel.CompressProgressDialogViewModel
-
 
 /**
  * Class which contains methods that interact
@@ -279,7 +278,9 @@ object NativeLibrary {
             Log.debug("[NativeLibrary] (VR) Core error: $title: $message")
             val vrErrorMessageLayer: VrErrorMessageLayer? =
                 VrErrorMessageLayer.sVrErrorMessageLayer.get()
-            if (vrErrorMessageLayer == null || !vrErrorMessageLayer.showErrorMessage(title, message)) {
+            if (vrErrorMessageLayer == null ||
+                !vrErrorMessageLayer.showErrorMessage(title, message)
+            ) {
                 Log.error("[NativeLibrary] (could not show dialog) Core error: $title: $message")
             }
         }
@@ -309,6 +310,7 @@ object NativeLibrary {
                 )
                 canContinue = true
             }
+
             CoreError.ErrorSavestate -> {
                 title = emulationActivity.getString(R.string.save_load_error)
                 message = details

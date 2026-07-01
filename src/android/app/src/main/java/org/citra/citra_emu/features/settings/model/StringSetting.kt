@@ -26,7 +26,7 @@ enum class StringSetting(
         Settings.SECTION_CAMERA,
         "_back"
     ),
-    VR_IMMMERSIVE_EYE_INDICATOR("vr_immersive_eye_indicator", Settings.SECTION_VR, "");
+    VR_IMMERSIVE_EYE_INDICATOR("vr_immersive_eye_indicator", Settings.SECTION_VR, "");
 
     override var string: String = defaultValue
 

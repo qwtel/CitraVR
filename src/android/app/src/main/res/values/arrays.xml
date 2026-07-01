@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="systemClockNames" translatable="true">
         <item>@string/device_clock</item>
         <item>@string/simulated_clock</item>
     </string-array>
+
     <integer-array name="systemClockValues" translatable="false">
         <item>0</item>
         <item>1</item>
     </integer-array>
+
     <string-array name="landscapeLayouts">
         <item>@string/emulation_screen_layout_largescreen</item>
         <item>@string/emulation_screen_layout_single</item>
@@ -16,6 +19,7 @@
         <item>@string/emulation_screen_layout_original</item>
         <item>@string/emulation_screen_layout_custom</item>
     </string-array>
+    <!-- start with 2 because that is the Large Screen layout in cpp files -->
     <integer-array name="landscapeLayoutValues">
         <item>2</item>
         <item>1</item>
@@ -24,11 +28,13 @@
         <item>0</item>
         <item>5</item>
     </integer-array>
+
     <string-array name="portraitLayouts">
         <item>@string/emulation_portrait_layout_top_full</item>
         <item>@string/emulation_screen_layout_original</item>
         <item>@string/emulation_screen_layout_custom</item>
     </string-array>
+
     <string-array name="secondaryLayouts">
         <item>@string/emulation_secondary_display_opposite</item>
         <item>@string/emulation_top_screen</item>
@@ -39,11 +45,13 @@
         <item>@string/emulation_screen_layout_largescreen</item>
 
     </string-array>
+
     <integer-array name="portraitLayoutValues">
         <item>0</item>
         <item>2</item>
         <item>1</item>
     </integer-array>
+
     <integer-array name="secondaryLayoutValues">
         <item>4</item>
         <item>1</item>
@@ -53,6 +61,7 @@
         <item>6</item>
         <item>7</item>
     </integer-array>
+
     <string-array name="smallScreenPositions">
         <item>@string/small_screen_position_top_right</item>
         <item>@string/small_screen_position_middle_right</item>
@@ -63,6 +72,7 @@
         <item>@string/small_screen_position_above</item>
         <item>@string/small_screen_position_below</item>
     </string-array>
+
     <integer-array name="smallScreenPositionValues">
         <item>0</item>
         <item>1</item>
@@ -73,6 +83,7 @@
         <item>6</item>
         <item>7</item>
     </integer-array>
+
     <string-array name="aspectRatioNames">
         <item>@string/aspect_ratio_default</item>
         <item>@string/aspect_ratio_16_9</item>
@@ -89,6 +100,8 @@
         <item>4</item>
         <item>5</item>
     </integer-array>
+
+
     <string-array name="regionNames">
         <item>@string/auto_select</item>
         <item>@string/system_region_jpn</item>
@@ -99,6 +112,7 @@
         <item>@string/system_region_kor</item>
         <item>@string/system_region_twn</item>
     </string-array>
+
     <integer-array name="regionValues">
         <item>-1</item>
         <item>0</item>
@@ -109,6 +123,7 @@
         <item>5</item>
         <item>6</item>
     </integer-array>
+
     <string-array name="languageNames">
         <item>@string/language_japanese</item>
         <item>@string/language_english</item>
@@ -123,6 +138,7 @@
         <item>@string/language_russian</item>
         <item>@string/language_traditional_chinese</item>
     </string-array>
+
     <integer-array name="languageValues">
         <item>0</item>
         <item>1</item>
@@ -137,6 +153,7 @@
         <item>10</item>
         <item>11</item>
     </integer-array>
+
     <string-array name="statsPosition">
         <item>@string/performance_overlay_position_top_left</item>
         <item>@string/performance_overlay_position_center_top</item>
@@ -153,6 +170,7 @@
         <item>4</item>
         <item>5</item>
     </integer-array>
+
     <string-array name="n3dsButtons">
         <item>@string/button_a</item>
         <item>@string/button_b</item>
@@ -171,38 +189,45 @@
         <item>@string/button_swap</item>
         <item>@string/button_turbo</item>
     </string-array>
+
     <string-array name="cameraImageSourceNames">
         <item>@string/blank</item>
         <item>@string/still_image</item>
         <item>@string/device_camera</item>
     </string-array>
+
     <string-array name="cameraImageSourceValues">
         <item>blank</item>
         <item>image</item>
         <item>ndk</item>
     </string-array>
+
     <string-array name="cameraDeviceNames">
         <item>@string/option_default</item>
         <item>@string/any_front_camera</item>
         <item>@string/any_back_camera</item>
     </string-array>
+
     <string-array name="cameraDeviceValues">
-        <item></item>
+        <item />
         <item>_front</item>
         <item>_back</item>
     </string-array>
+
     <string-array name="cameraFlipNames">
         <item>@string/none</item>
         <item>@string/horizontal</item>
         <item>@string/vertical</item>
         <item>@string/reverse</item>
     </string-array>
+
     <integer-array name="cameraFlipValues">
         <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </integer-array>
+
     <string-array name="audioInputTypeNames">
         <item>@string/auto</item>
         <item>@string/none</item>
@@ -210,6 +235,7 @@
         <item>@string/real_cubeb</item>
         <item>@string/real_openal</item>
     </string-array>
+
     <integer-array name="audioInputTypeValues">
         <item>0</item>
         <item>1</item>
@@ -217,42 +243,49 @@
         <item>3</item>
         <item>4</item>
     </integer-array>
+
     <string-array name="render3dModes">
-        <item>@string/off</item>
         <item>@string/side_by_side</item>
+        <item>@string/side_by_side_full</item>
         <item>@string/anaglyph</item>
         <item>@string/interlaced</item>
         <item>@string/reverse_interlaced</item>
         <item>@string/cardboard_vr</item>
     </string-array>
+
     <integer-array name="render3dValues">
-        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
     </integer-array>
+
     <string-array name="render3dWhichDisplay">
         <item>@string/off</item>
         <item>@string/render_3d_which_display_both</item>
         <item>@string/render_3d_which_display_primary</item>
         <item>@string/render_3d_which_display_secondary</item>
     </string-array>
+
     <integer-array name="render3dDisplayValues">
         <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </integer-array>
+
     <string-array name="graphicsApiNames">
         <item>@string/opengles</item>
         <item>@string/vulkan</item>
     </string-array>
+
     <integer-array name="graphicsApiValues">
         <item>1</item>
         <item>2</item>
     </integer-array>
+
     <string-array name="textureFilterNames">
         <item>@string/none</item>
         <item>@string/anime4k</item>
@@ -261,6 +294,7 @@
         <item>@string/xbrz</item>
         <item>@string/mmpx</item>
     </string-array>
+
     <integer-array name="textureFilterValues">
         <item>0</item>
         <item>1</item>
@@ -269,6 +303,7 @@
         <item>4</item>
         <item>5</item>
     </integer-array>
+
     <string-array name="textureSamplingNames">
         <item>@string/game_controlled</item>
         <item>@string/nearest_neighbor</item>
@@ -279,6 +314,7 @@
         <item>1</item>
         <item>2</item>
     </integer-array>
+
     <string-array name="staticThemeNames">
         <item>Blue (Default)</item>
         <item>Cyan</item>
@@ -301,6 +337,7 @@
         <item>7</item>
         <item>8</item>
     </integer-array>
+
     <string-array name="themeModeEntries">
         <item>@string/theme_mode_follow_system</item>
         <item>@string/theme_mode_light</item>
@@ -311,6 +348,7 @@
         <item>1</item>
         <item>2</item>
     </integer-array>
+
     <string-array name="systemFileRegions">
         <item>@string/system_region_jpn</item>
         <item>@string/system_region_usa</item>
@@ -329,6 +367,7 @@
         <item>5</item>
         <item>6</item>
     </integer-array>
+
     <string-array name="soundOutputModes">
         <item>@string/mono</item>
         <item>@string/stereo</item>
@@ -339,6 +378,7 @@
         <item>1</item>
         <item>2</item>
     </integer-array>
+
     <string-array name="resolutionFactorNames">
         <item>@string/internal_resolution_setting_auto</item>
         <item>@string/internal_resolution_setting_1x</item>
@@ -365,6 +405,7 @@
         <item>9</item>
         <item>10</item>
     </integer-array>
+
     <string-array name="countries">
         <item></item>
         <item>@string/japan</item>
@@ -375,7 +416,7 @@
         <item></item>
         <item></item>
         <item>@string/anguilla</item>
-        <item>@string/antigua_and_barbuda</item>
+        <item>@string/antigua_and_barbuda</item> <!-- 0-9 -->
         <item>@string/argentina</item>
         <item>@string/aruba</item>
         <item>@string/bahamas</item>
@@ -385,7 +426,7 @@
         <item>@string/brazil</item>
         <item>@string/british_virgin_islands</item>
         <item>@string/canada</item>
-        <item>@string/cayman_islands</item>
+        <item>@string/cayman_islands</item> <!-- 10-19 -->
         <item>@string/chile</item>
         <item>@string/colombia</item>
         <item>@string/costa_rica</item>
@@ -395,7 +436,7 @@
         <item>@string/el_salvador</item>
         <item>@string/french_guiana</item>
         <item>@string/grenada</item>
-        <item>@string/guadeloupe</item>
+        <item>@string/guadeloupe</item> <!-- 20-29 -->
         <item>@string/guatemala</item>
         <item>@string/guyana</item>
         <item>@string/haiti</item>
@@ -405,7 +446,7 @@
         <item>@string/mexico</item>
         <item>@string/monsterrat</item>
         <item>@string/netherlands_antilles</item>
-        <item>@string/nicaragua</item>
+        <item>@string/nicaragua</item> <!-- 30-39 -->
         <item>@string/panama</item>
         <item>@string/paraguay</item>
         <item>@string/peru</item>
@@ -415,7 +456,7 @@
         <item>@string/suriname</item>
         <item>@string/trinidad_and_tobago</item>
         <item>@string/turks_and_caicos_islands</item>
-        <item>@string/united_states</item>
+        <item>@string/united_states</item> <!-- 40-49 -->
         <item>@string/uruguay</item>
         <item>@string/us_virgin_islands</item>
         <item>@string/venezuela</item>
@@ -425,7 +466,7 @@
         <item></item>
         <item></item>
         <item></item>
-        <item></item>
+        <item></item> <!-- 50-59 -->
         <item></item>
         <item></item>
         <item></item>
@@ -435,7 +476,7 @@
         <item>@string/austria</item>
         <item>@string/belgium</item>
         <item>@string/bosnia_and_herzegovnia</item>
-        <item>@string/botswana</item>
+        <item>@string/botswana</item> <!-- 60-69 -->
         <item>@string/bulgaria</item>
         <item>@string/croatia</item>
         <item>@string/cyprus</item>
@@ -445,7 +486,7 @@
         <item>@string/finland</item>
         <item>@string/france</item>
         <item>@string/germany</item>
-        <item>@string/greece</item>
+        <item>@string/greece</item> <!-- 70-79 -->
         <item>@string/hungary</item>
         <item>@string/iceland</item>
         <item>@string/ireland</item>
@@ -455,7 +496,7 @@
         <item>@string/liechtenstein</item>
         <item>@string/lithuania</item>
         <item>@string/luxembourg</item>
-        <item>@string/macedonia</item>
+        <item>@string/macedonia</item> <!-- 80-89 -->
         <item>@string/malta</item>
         <item>@string/montenegro</item>
         <item>@string/mozambique</item>
@@ -465,7 +506,7 @@
         <item>@string/norway</item>
         <item>@string/poland</item>
         <item>@string/portugal</item>
-        <item>@string/romania</item>
+        <item>@string/romania</item> <!-- 90-99 -->
         <item>@string/russia</item>
         <item>@string/serbia</item>
         <item>@string/slovakia</item>
@@ -475,7 +516,7 @@
         <item>@string/swaziland</item>
         <item>@string/sweden</item>
         <item>@string/switzerland</item>
-        <item>@string/turkey</item>
+        <item>@string/turkey</item> <!-- 100-109 -->
         <item>@string/united_kingdom</item>
         <item>@string/zambia</item>
         <item>@string/zimbabwe</item>
@@ -485,7 +526,7 @@
         <item>@string/niger</item>
         <item>@string/chad</item>
         <item>@string/sudan</item>
-        <item>@string/eritrea</item>
+        <item>@string/eritrea</item> <!-- 110-119 -->
         <item>@string/djibouti</item>
         <item>@string/somalia</item>
         <item>@string/andorra</item>
@@ -495,7 +536,7 @@
         <item>@string/jersey</item>
         <item>@string/monaco</item>
         <item>@string/taiwan</item>
-        <item></item>
+        <item></item> <!-- 120-129 -->
         <item></item>
         <item></item>
         <item></item>
@@ -505,7 +546,7 @@
         <item>@string/south_korea</item>
         <item></item>
         <item></item>
-        <item></item>
+        <item></item> <!-- 130-139 -->
         <item></item>
         <item></item>
         <item></item>
@@ -515,7 +556,7 @@
         <item></item>
         <item></item>
         <item></item>
-        <item></item>
+        <item></item> <!-- 140-149 -->
         <item></item>
         <item></item>
         <item>@string/indonesia</item>
@@ -525,7 +566,7 @@
         <item>@string/malaysia</item>
         <item></item>
         <item></item>
-        <item></item>
+        <item></item> <!-- 150-159 -->
         <item>@string/china</item>
         <item></item>
         <item></item>
@@ -535,7 +576,7 @@
         <item></item>
         <item></item>
         <item>@string/united_arab_emirates</item>
-        <item>@string/india</item>
+        <item>@string/india</item> <!-- 160-169 -->
         <item>@string/egypt</item>
         <item>@string/oman</item>
         <item>@string/qatar</item>
@@ -545,15 +586,16 @@
         <item>@string/bahrain</item>
         <item>@string/jordan</item>
         <item></item>
-        <item></item>
+        <item></item> <!-- 170-179 -->
         <item></item>
         <item></item>
         <item></item>
         <item></item>
         <item>@string/san_marino</item>
         <item>@string/vatican_city</item>
-        <item>@string/bermuda</item>
+        <item>@string/bermuda</item> <!-- 180-189 -->
     </string-array>
+
     <string-array name="months">
         <item>@string/january</item>
         <item>@string/february</item>
@@ -582,6 +624,7 @@
         <item>11</item>
         <item>12</item>
     </integer-array>
+
     <integer-array name="landscapeValues">
         <item>2</item>
         <item>1</item>
@@ -594,6 +637,7 @@
         <item>0</item>
         <item>1</item>
     </integer-array>
+
     <string-array name="screenOrientations">
         <item>@string/layout_screen_orientation_auto_sensor</item>
         <item>@string/layout_screen_orientation_landscape</item>
@@ -608,38 +652,47 @@
         <item>1</item>
         <item>9</item>
     </integer-array>
+
     <string-array name="vrBackgroundNames">
         <item>Passthrough</item>
         <item>Void (black)</item>
     </string-array>
+
     <integer-array name="vrBackgroundValues">
         <item>1</item>
         <item>2</item>
     </integer-array>
+
     <string-array name="vrCpuLevelNames">
         <item>High (3)</item>
         <item>Boost (4)</item>
     </string-array>
+
     <integer-array name="vrCpuLevelValues">
         <item>3</item>
         <item>4</item>
     </integer-array>
+
     <string-array name="vrDisplayRefreshRateNames">
         <item>@string/vr_display_refresh_rate_default</item>
         <item>@string/vr_display_refresh_rate_120</item>
     </string-array>
+
     <integer-array name="vrDisplayRefreshRateValues">
         <item>0</item>
         <item>120</item>
     </integer-array>
+
     <string-array name="vrDpadThumbrestModeNames">
         <item>@string/vr_dpad_thumbrest_mode_both</item>
         <item>@string/vr_dpad_thumbrest_mode_left_to_right</item>
     </string-array>
+
     <integer-array name="vrDpadThumbrestModeValues">
         <item>0</item>
         <item>1</item>
     </integer-array>
+
     <string-array name="vrMotionSourceNames">
         <item>@string/vr_motion_source_off</item>
         <item>@string/vr_motion_source_hmd</item>
@@ -647,6 +700,7 @@
         <item>@string/vr_motion_source_right_controller</item>
         <item>@string/vr_motion_source_combined</item>
     </string-array>
+
     <integer-array name="vrMotionSourceValues">
         <item>0</item>
         <item>1</item>
@@ -654,22 +708,26 @@
         <item>3</item>
         <item>5</item>
     </integer-array>
+
     <string-array name="vrPosFactorGameScalerNames">
         <item>1x</item>
         <item>10x</item>
         <item>100x</item>
     </string-array>
+
     <integer-array name="vrPosFactorGameScalerValues">
         <item>0</item>
         <item>1</item>
         <item>2</item>
     </integer-array>
+
     <string-array name="vrImmersiveModeNames">
         <item>Off</item>
         <item>180 Degree Wrap-Around Immersive (3DoF)</item>
         <item>"Super Immersive (6DoF) - Profile 1 (Ocarina of Time &amp; Majora's Mask)"</item>
         <item>Super Immersive (6DoF) - Profile 2 (All other games)</item>
     </string-array>
+
     <integer-array name="vrImmersiveModeValues">
         <item>0</item>
         <item>1</item>
