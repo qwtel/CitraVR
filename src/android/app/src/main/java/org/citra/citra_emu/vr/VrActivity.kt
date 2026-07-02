@@ -21,13 +21,13 @@ import org.citra.citra_emu.fragments.EmulationFragment.Companion
 import org.citra.citra_emu.ui.main.MainActivity
 import org.citra.citra_emu.utils.EmulationMenuSettings
 import org.citra.citra_emu.utils.Log
+import org.citra.citra_emu.vr.utils.VRUtils
 import kotlin.system.exitProcess
 
 
 class VrActivity : EmulationActivity() {
     private var mHandle: Long = 0
     private var clickRunnable = ClickRunnable()
-    private var isReturningToMenu = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.info("VR [Java] onCreate()");
@@ -38,9 +38,7 @@ class VrActivity : EmulationActivity() {
             // When we detect two instances running, due to bad cleanup
             // handling, we have to terminate both of them. Restart the main
             // activity with an error message telling the user what happened.
-            val relaunchMainIntent = Intent(this, MainActivity::class.java)
-            relaunchMainIntent.putExtra(EXTRA_ERROR_TWO_INSTANCES, true)
-            startActivity(relaunchMainIntent)
+            relaunchMainMenu(showTwoInstancesError = true)
             currentActivity?.finish()
             return
         }
@@ -89,8 +87,24 @@ class VrActivity : EmulationActivity() {
         }
     }
 
+    private fun relaunchMainMenu(showTwoInstancesError: Boolean = false): Boolean {
+        if (isRelaunchingMainMenu) {
+            Log.info("VR [Java] main menu relaunch already in progress")
+            return false
+        }
+
+        isRelaunchingMainMenu = true
+        val relaunchMainIntent = Intent(this, MainActivity::class.java).apply {
+            if (showTwoInstancesError) {
+                putExtra(EXTRA_ERROR_TWO_INSTANCES, true)
+            }
+        }
+        startActivity(relaunchMainIntent)
+        return true
+    }
+
     fun forwardVRInput(keycode: Int, isPressed: Boolean) {
-        val button = org.citra.citra_emu.vr.utils.VRUtils.ButtonType.androidToNativeLibrary(keycode)
+        val button = VRUtils.ButtonType.androidToNativeLibrary(keycode)
             ?: return
         NativeLibrary.onGamePadEvent(
             "Quest controller",
@@ -121,15 +135,9 @@ class VrActivity : EmulationActivity() {
     }
 
     fun quitToMenu() {
-        if (isReturningToMenu) {
-            Log.info("VR [Java] quitToMenu already in progress")
-            return
+        if (relaunchMainMenu()) {
+            finish()
         }
-
-        isReturningToMenu = true
-        finish()
-        val relaunchMainIntent = Intent(this, MainActivity::class.java)
-        startActivity(relaunchMainIntent)
     }
 
     fun pauseGame() {
@@ -168,6 +176,7 @@ class VrActivity : EmulationActivity() {
         const val EXTRA_ERROR_TWO_INSTANCES = "org.citra.citra_emu.vr.ERROR_TWO_INSTANCES"
         var hasRun = false
         var currentActivity: VrActivity? = null
+        private var isRelaunchingMainMenu = false
 
         init {
             if (Build.BRAND == "oculus") {
